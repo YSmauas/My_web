@@ -43,6 +43,61 @@
         @media (max-width: 480px) {
             #maintenance-banner .card { padding: 18px; }
         }
+
+        /* Hidden admin button styles */
+        .logo {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        #adminSecretBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            animation: bounce 0.6s infinite;
+            z-index: 1000;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        #adminSecretBtn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        .admin-hint {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 12px 18px;
+            border-radius: 6px;
+            font-size: 12px;
+            display: none;
+            z-index: 999;
+            animation: fadeInOut 2s ease-in-out;
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
     </style>
 </head>
 <body>
@@ -55,10 +110,16 @@
         </div>
     </div>
 
+    <!-- Admin Secret Button -->
+    <button id="adminSecretBtn" onclick="goToAdmin()" title="לוח ניהול">
+        <i class="fas fa-lock"></i>
+    </button>
+    <div class="admin-hint" id="adminHint">🔓 לוח ניהול נפתח! לחץ על הכפתור הסגול</div>
+
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="container nav-content">
-            <div class="logo">
+            <div class="logo" id="secretLogo" title="לחץ 3 פעמים לגישה מנהלית">
                 <i class="fas fa-code"></i>
                 <span>פיתוחים שלי</span>
             </div>
@@ -67,7 +128,6 @@
                 <li><a href="#shop">חנות</a></li>
                 <li><a href="#about">עלינו</a></li>
                 <li><a href="#contact">יצירת קשר</a></li>
-                <li><a href="admin.html" target="_blank" title="לוח ניהול"><i class="fas fa-lock"></i></a></li>
             </ul>
         </div>
     </nav>
@@ -290,11 +350,55 @@
     <div id="notification" class="notification"></div>
 
     <script>
+        // Secret admin access system
+        let clickCount = 0;
+        let clickTimer;
+
+        document.getElementById('secretLogo').addEventListener('click', function() {
+            clickCount++;
+            
+            // Reset counter after 2 seconds of no clicks
+            clearTimeout(clickTimer);
+            clickTimer = setTimeout(() => {
+                clickCount = 0;
+            }, 2000);
+
+            // Show hint at 2 clicks
+            if (clickCount === 2) {
+                const hint = document.getElementById('adminHint');
+                hint.style.display = 'block';
+                setTimeout(() => {
+                    hint.style.display = 'none';
+                }, 2000);
+            }
+
+            // Activate at 3 clicks
+            if (clickCount === 3) {
+                activateAdminButton();
+                clickCount = 0;
+            }
+        });
+
+        function activateAdminButton() {
+            const adminBtn = document.getElementById('adminSecretBtn');
+            adminBtn.style.display = 'flex';
+            
+            // Add a small animation to draw attention
+            adminBtn.style.animation = 'bounce 0.6s infinite';
+            
+            // Optional: Show a subtle notification
+            showNotification('🔓 לוח ניהול נפתח!');
+        }
+
+        function goToAdmin() {
+            window.open('admin.html', '_blank');
+        }
+
         function closeMaintenance() {
             var banner = document.getElementById('maintenance-banner');
             if (banner) banner.style.display = 'none';
         }
-        // Optional: prevent interaction with site while banner is visible by stopping pointer events on body underlay
+
         document.addEventListener('keydown', function(e){
             if (e.key === 'Escape') closeMaintenance();
         });
