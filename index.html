@@ -6,8 +6,55 @@
     <title>פיתוחים שלי - חנות ההורדות</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Maintenance banner styles */
+        #maintenance-banner {
+            direction: rtl;
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.6);
+            z-index: 9999;
+        }
+        #maintenance-banner .card {
+            background: #fff;
+            color: #222;
+            padding: 24px;
+            border-radius: 10px;
+            max-width: 720px;
+            width: calc(100% - 40px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+            text-align: center;
+            font-family: inherit;
+        }
+        #maintenance-banner h2 { margin: 0 0 8px; }
+        #maintenance-banner p { margin: 0 0 16px; }
+        #maintenance-banner .btn-close {
+            background: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        @media (max-width: 480px) {
+            #maintenance-banner .card { padding: 18px; }
+        }
+    </style>
 </head>
 <body>
+    <!-- Maintenance banner (shown on entry) -->
+    <div id="maintenance-banner" role="dialog" aria-labelledby="maintenance-title" aria-modal="true">
+        <div class="card">
+            <h2 id="maintenance-title"><i class="fas fa-tools"></i> האתר בבנייה</h2>
+            <p>האתר אינו פעיל כרגע ונמצא בתהליך בנייה. נחזור בקרוב עם עדכונים. תודה על הסבלנות!</p>
+            <button class="btn-close" onclick="closeMaintenance()">הבנתי</button>
+        </div>
+    </div>
+
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="container nav-content">
@@ -241,6 +288,16 @@
     <!-- Notification -->
     <div id="notification" class="notification"></div>
 
+    <script>
+        function closeMaintenance() {
+            var banner = document.getElementById('maintenance-banner');
+            if (banner) banner.style.display = 'none';
+        }
+        // Optional: prevent interaction with site while banner is visible by stopping pointer events on body underlay
+        document.addEventListener('keydown', function(e){
+            if (e.key === 'Escape') closeMaintenance();
+        });
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
