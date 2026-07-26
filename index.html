@@ -50,6 +50,91 @@
             user-select: none;
         }
 
+        /* Password Modal */
+        #passwordModal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        }
+
+        .password-container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .password-container h2 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+
+        .password-container p {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .password-container input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            margin-bottom: 15px;
+            transition: border-color 0.3s ease;
+        }
+
+        .password-container input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .password-container button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .password-container button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .password-error {
+            color: #ff6b6b;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
+
         #adminSecretBtn {
             position: fixed;
             bottom: 20px;
@@ -101,6 +186,46 @@
     </style>
 </head>
 <body>
+    <!-- Anti-Debug Protection -->
+    <script>
+        // Disable right-click
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+        });
+
+        // Disable F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'F12' || 
+                (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+                (e.ctrlKey && e.shiftKey && e.key === 'J') ||
+                (e.ctrlKey && e.shiftKey && e.key === 'C') ||
+                (e.ctrlKey && e.shiftKey && e.key === 'K')) {
+                e.preventDefault();
+            }
+        });
+
+        // Detect DevTools
+        let devtools = { open: false, orientation: null };
+        const threshold = 160;
+
+        setInterval(() => {
+            if (window.outerHeight - window.innerHeight > threshold || 
+                window.outerWidth - window.innerWidth > threshold) {
+                if (!devtools.open) {
+                    devtools.open = true;
+                    onDevtoolsOpen();
+                }
+            } else {
+                devtools.open = false;
+            }
+        }, 500);
+
+        function onDevtoolsOpen() {
+            document.body.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100vh; background: #333; color: white; font-size: 24px; text-align: center;">🔒 לא מורשה להשתמש בכלים של מפתח!</div>';
+            console.clear();
+        }
+    </script>
+
     <!-- Maintenance banner (shown on entry) -->
     <div id="maintenance-banner" role="dialog" aria-labelledby="maintenance-title" aria-modal="true">
         <div class="card">
@@ -110,11 +235,22 @@
         </div>
     </div>
 
+    <!-- Password Modal -->
+    <div id="passwordModal">
+        <div class="password-container">
+            <h2>🔐 גישה מוגבלת</h2>
+            <p>זה אזור מוגן. הכנס סיסמה להמשך</p>
+            <input type="password" id="adminPassword" placeholder="סיסמה" autocomplete="off">
+            <button onclick="verifyAdminPassword()">כניסה</button>
+            <div class="password-error" id="passwordError">❌ סיסמה שגויה!</div>
+        </div>
+    </div>
+
     <!-- Admin Secret Button -->
-    <button id="adminSecretBtn" onclick="goToAdmin()" title="לוח ניהול">
+    <button id="adminSecretBtn" onclick="promptPassword()" title="לוח ניהול">
         <i class="fas fa-lock"></i>
     </button>
-    <div class="admin-hint" id="adminHint">🔓 לוח ניהול נפתח! לחץ על הכפתור הסגול</div>
+    <div class="admin-hint" id="adminHint">🔓 לוח ניהול נפתח! הכנס סיסמה</div>
 
     <!-- Navigation Bar -->
     <nav class="navbar">
@@ -390,9 +526,40 @@
             showNotification('🔓 לוח ניהול נפתח!');
         }
 
-        function goToAdmin() {
-            window.open('admin.html', '_blank');
+        function promptPassword() {
+            document.getElementById('passwordModal').style.display = 'flex';
+            document.getElementById('adminPassword').focus();
         }
+
+        function verifyAdminPassword() {
+            const password = document.getElementById('adminPassword').value;
+            const correctPassword = 'Ys@329421804';
+            const errorElement = document.getElementById('passwordError');
+
+            if (password === correctPassword) {
+                sessionStorage.setItem('adminVerified', 'true');
+                window.open('admin.html', '_blank');
+                document.getElementById('passwordModal').style.display = 'none';
+                document.getElementById('adminPassword').value = '';
+                errorElement.style.display = 'none';
+            } else {
+                errorElement.style.display = 'block';
+                document.getElementById('adminPassword').value = '';
+                document.getElementById('adminPassword').focus();
+            }
+        }
+
+        // Allow Enter key for password
+        document.getElementById('adminPassword').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') verifyAdminPassword();
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('passwordModal').addEventListener('click', (e) => {
+            if (e.target.id === 'passwordModal') {
+                document.getElementById('passwordModal').style.display = 'none';
+            }
+        });
 
         function closeMaintenance() {
             var banner = document.getElementById('maintenance-banner');
