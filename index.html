@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>פיתוחים שלי - חנות ההורדות</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <div class="logo">
+                <i class="fas fa-code"></i>
+                <span>פיתוחים שלי</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">בית</a></li>
+                <li><a href="#shop">חנות</a></li>
+                <li><a href="#about">עלינו</a></li>
+                <li><a href="#contact">יצירת קשר</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>ברוכים הבאים לחנות הפיתוחים שלי</h1>
+            <p>אתר חנות עם פרויקטים מודרניים ופתרונות יצירתיים</p>
+            <button class="btn btn-primary" onclick="scrollToShop()">
+                <i class="fas fa-shopping-cart"></i> גלול לחנות
+            </button>
+        </div>
+        <div class="hero-background">
+            <div class="floating-box box1"></div>
+            <div class="floating-box box2"></div>
+            <div class="floating-box box3"></div>
+        </div>
+    </section>
+
+    <!-- Shop Section -->
+    <section id="shop" class="shop">
+        <div class="container">
+            <h2>רכישות והורדות</h2>
+            <p class="section-subtitle">בחר מבין הפרויקטים והפתרונות שלנו</p>
+            
+            <div class="filters">
+                <button class="filter-btn active" onclick="filterProducts('all')">הכל</button>
+                <button class="filter-btn" onclick="filterProducts('web')">אתרים</button>
+                <button class="filter-btn" onclick="filterProducts('app')">אפליקציות</button>
+                <button class="filter-btn" onclick="filterProducts('tools')">כלים</button>
+            </div>
+
+            <div class="products-grid">
+                <div class="product-card" data-category="web">
+                    <div class="product-image">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>תבנית אתר מודרני</h3>
+                    <p>תבנית HTML/CSS מקצועית עם עיצוב רספונסיבי</p>
+                    <div class="product-meta">
+                        <span class="price">39₪</span>
+                        <span class="rating"><i class="fas fa-star"></i> 4.8</span>
+                    </div>
+                    <button class="btn btn-download" onclick="downloadProduct('modern-template.zip')">
+                        <i class="fas fa-download"></i> הורדה
+                    </button>
+                </div>
+
+                <div class="product-card" data-category="web">
+                    <div class="product-image">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>ערכת UI מתקדמת</h3>
+                    <p>קומפוננטים אינטראקטיביים עם JavaScript</p>
+                    <div class="product-meta">
+                        <span class="price">49₪</span>
+                        <span class="rating"><i class="fas fa-star"></i> 4.9</span>
+                    </div>
+                    <button class="btn btn-download" onclick="downloadProduct('ui-kit.zip')">
+                        <i class="fas fa-download"></i> הורדה
+                    </button>
+                </div>
+
+                <div class="product-card" data-category="app">
+                    <div class="product-image">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>אפליקציית לוח זמנים</h3>
+                    <p>אפליקציה מלאה לניהול משימות יומיות</p>
+                    <div class="product-meta">
+                        <span class="price">59₪</span>
+                        <span class="rating"><i class="fas fa-star"></i> 4.7</span>
+                    </div>
+                    <button class="btn btn-download" onclick="downloadProduct('task-app.zip')">
+                        <i class="fas fa-download"></i> הורדה
+                    </button>
+                </div>
+
+                <div class="product-card" data-category="tools">
+                    <div class="product-image">
+                        <i class="fas fa-wrench"></i>
+                    </div>
+                    <h3>כלי המרת צבעים</h3>
+                    <p>מרת בין HEX, RGB, HSL בקלות</p>
+                    <div class="product-meta">
+                        <span class="price">19₪</span>
+                        <span class="rating"><i class="fas fa-star"></i> 4.6</span>
+                    </div>
+                    <button class="btn btn-download" onclick="downloadProduct('color-converter.zip')">
+                        <i class="fas fa-download"></i> הורדה
+                    </button>
+                </div>
+
+                <div class="product-card" data-category="tools">
+                    <div class="product-image">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>מחשבון מתקדם</h3>
+                    <p>מחשבון עם פונקציות מדעיות</p>
+                    <div class="product-meta">
+                        <span class="price">9₪</span>
+                        <span class="rating"><i class="fas fa-star"></i> 4.5</span>
+                    </div>
+                    <button class="btn btn-download" onclick="downloadProduct('advanced-calc.zip')">
+                        <i class="fas fa-download"></i> הורדה
+                    </button>
+                </div>
+
+                <div class="product-card" data-category="app">
+                    <div class="product-image">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>משחק זיכרון</h3>
+                    <p>משחק אינטראקטיבי לבדיקת זיכרון</p>
+                    <div class="product-meta">
+                        <span class="price">29₪</span>
+                        <span class="rating"><i class="fas fa-star"></i> 4.8</span>
+                    </div>
+                    <button class="btn btn-download" onclick="downloadProduct('memory-game.zip')">
+                        <i class="fas fa-download"></i> הורדה
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>על הפרויקט שלנו</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>פתרונות פיתוח מקצועיים</h3>
+                    <p>אנחנו מתעדכנים בטכנולוגיות האחרונות ומספקים פתרונות חדשניים לכל צורך.</p>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check-circle"></i> עיצוב מודרני ורספונסיבי</li>
+                        <li><i class="fas fa-check-circle"></i> קוד נקי ותמכה</li>
+                        <li><i class="fas fa-check-circle"></i> עדכונים חינם</li>
+                        <li><i class="fas fa-check-circle"></i> תמיכה מוקדשת</li>
+                    </ul>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-box">
+                        <h4>100+</h4>
+                        <p>לקוחות שמחים</p>
+                    </div>
+                    <div class="stat-box">
+                        <h4>50+</h4>
+                        <p>פרויקטים</p>
+                    </div>
+                    <div class="stat-box">
+                        <h4>24/7</h4>
+                        <p>תמיכה</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>יצירת קשר</h2>
+            <p class="section-subtitle">יש לך שאלה? אנחנו כאן לעזור</p>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>דוא"ל</h4>
+                            <p>info@example.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>טלפון</h4>
+                            <p>+972-50-XXX-XXXX</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>כתובת</h4>
+                            <p>ישראל</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="contact-form" onsubmit="handleSubmit(event)">
+                    <input type="text" placeholder="שם מלא" required>
+                    <input type="email" placeholder="כתובת דוא״ל" required>
+                    <textarea placeholder="הודעה..." rows="5" required></textarea>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> שלח הודעה
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 פיתוחים שלי. כל הזכויות שמורות.</p>
+            <div class="social-links">
+                <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification -->
+    <div id="notification" class="notification"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
