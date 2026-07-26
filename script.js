@@ -32,8 +32,29 @@ function showNotification(message) {
 
 function handleSubmit(event) {
     event.preventDefault();
-    showNotification('✓ ההודעה נשלחה בהצלחה!');
-    event.target.reset();
+    
+    // Get form data
+    const form = event.target;
+    const name = form.querySelector('input[type="text"]').value;
+    const email = form.querySelector('input[type="email"]').value;
+    const message = form.querySelector('textarea').value;
+    
+    // Create message object
+    const contactMessage = {
+        name: name,
+        email: email,
+        message: message,
+        timestamp: new Date().toISOString()
+    };
+    
+    // Save to localStorage
+    const messages = JSON.parse(localStorage.getItem('contactMessages') || '[]');
+    messages.push(contactMessage);
+    localStorage.setItem('contactMessages', JSON.stringify(messages));
+    
+    // Show success message
+    showNotification('✓ ההודעה נשלחה בהצלחה! בדוק בלוח הניהול');
+    form.reset();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
