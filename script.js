@@ -30,33 +30,72 @@ function showNotification(message) {
     setTimeout(() => notification.classList.remove('show'), 3000);
 }
 
-function handleSubmit(event) {
-    event.preventDefault();
-    
-    // Get form data
-    const form = event.target;
-    const name = form.querySelector('input[type="text"]').value;
-    const email = form.querySelector('input[type="email"]').value;
-    const message = form.querySelector('textarea').value;
-    
-    // Create message object
-    const contactMessage = {
-        name: name,
-        email: email,
-        message: message,
-        timestamp: new Date().toISOString()
-    };
-    
-    // Save to localStorage
-    const messages = JSON.parse(localStorage.getItem('contactMessages') || '[]');
-    messages.push(contactMessage);
-    localStorage.setItem('contactMessages', JSON.stringify(messages));
-    
-    // Show success message
-    showNotification('✓ ההודעה נשלחה בהצלחה! בדוק בלוח הניהול');
-    form.reset();
-}
-
 document.addEventListener('DOMContentLoaded', () => {
     console.log('🎨 האתר שלך טוען בהצלחה!');
+});
+
+// --- פונקציות עבור החלון הקופץ של ה-M36 ---
+
+async function loadModels() {
+  try {
+    const response = await fetch('Download/logo-models.json');
+    if (!response.ok) throw new Error('שגיאת רשת במשיכת הקובץ');
+    
+    const models = await response.json();
+    const selectElement = document.getElementById('model-select');
+    selectElement.innerHTML = ''; 
+
+    models.forEach(model => {
+      const option = document.createElement('option');
+      option.value = model.image;
+      option.textContent = model.name;
+      selectElement.appendChild(option);
+    });
+
+    updatePreviewImage();
+    
+  } catch (error) {
+    console.error("שגיאה בטעינה:", error);
+    const selectElement = document.getElementById('model-select');
+    selectElement.innerHTML = '<option value="">שגיאה - הקובץ לא נמצא</option>';
+  }
+}
+
+function updatePreviewImage() {
+  const selectElement = document.getElementById('model-select');
+  const previewImage = document.getElementById('modal-preview-img');
+  const downloadBtn = document.getElementById('btn-download');
+  
+  if (selectElement.value) {
+    previewImage.src = selectElement.value; 
+    downloadBtn.href = selectElement.value; 
+  }
+}
+
+function openModal(modalId) {
+  document.getElementById(modalId).style.display = 'flex';
+  
+  const selectElement = document.getElementById('model-select');
+  if (selectElement && selectElement.options.length <= 1) {
+    loadModels();
+  }
+}
+
+function closeModal(modalId) {
+  document.getElementById(modalId).style.display = 'none';
+}
+
+window.onclick = function(event) {
+  if (event.target.classList.contains('modal')) {
+    event.target.style.display = 'none';
+  }
+}
+
+function addLike() {
+  let likesElement = document.getElementById('likes-count');
+  likesElement.innerText = parseInt(likesElement.innerText) + 1;
+}
+
+document.getElementById('btn-download').addEventListener('click', function() {
+    showNotification('✓ ההורדה החלה בהצלחה!');
 });
