@@ -44,144 +44,9 @@
             #maintenance-banner .card { padding: 18px; }
         }
 
-        /* Hidden admin button styles */
         .logo {
             cursor: pointer;
             user-select: none;
-        }
-
-        /* Password Modal */
-        #passwordModal {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.7);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-        }
-
-        .password-container {
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-            max-width: 400px;
-            width: 90%;
-            text-align: center;
-            animation: slideDown 0.3s ease;
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .password-container h2 {
-            color: #333;
-            margin-bottom: 10px;
-            font-size: 22px;
-        }
-
-        .password-container p {
-            color: #666;
-            margin-bottom: 25px;
-            font-size: 14px;
-        }
-
-        .password-container input {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 6px;
-            font-size: 16px;
-            margin-bottom: 15px;
-            transition: border-color 0.3s ease;
-        }
-
-        .password-container input:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .password-container button {
-            width: 100%;
-            padding: 12px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .password-container button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
-        }
-
-        .password-error {
-            color: #ff6b6b;
-            font-size: 14px;
-            margin-top: 10px;
-            display: none;
-        }
-
-        #adminSecretBtn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border: none;
-            border-radius: 50%;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            animation: bounce 0.6s infinite;
-            z-index: 1000;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        #adminSecretBtn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
-        }
-
-        .admin-hint {
-            position: fixed;
-            top: 80px;
-            right: 20px;
-            background: rgba(0,0,0,0.8);
-            color: white;
-            padding: 12px 18px;
-            border-radius: 6px;
-            font-size: 12px;
-            display: none;
-            z-index: 999;
-            animation: fadeInOut 2s ease-in-out;
-        }
-
-        @keyframes fadeInOut {
-            0%, 100% { opacity: 0; }
-            50% { opacity: 1; }
         }
     </style>
 </head>
@@ -235,34 +100,17 @@
         </div>
     </div>
 
-    <!-- Password Modal -->
-    <div id="passwordModal">
-        <div class="password-container">
-            <h2>🔐 גישה מוגבלת</h2>
-            <p>זה אזור מוגן. הכנס סיסמה להמשך</p>
-            <input type="password" id="adminPassword" placeholder="סיסמה" autocomplete="off">
-            <button onclick="verifyAdminPassword()">כניסה</button>
-            <div class="password-error" id="passwordError">❌ סיסמה שגויה!</div>
-        </div>
-    </div>
-
-    <!-- Admin Secret Button -->
-    <button id="adminSecretBtn" onclick="promptPassword()" title="לוח ניהול">
-        <i class="fas fa-lock"></i>
-    </button>
-    <div class="admin-hint" id="adminHint">🔓 לוח ניהול נפתח! הכנס סיסמה</div>
-
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="container nav-content">
-            <div class="logo" id="secretLogo" title="לחץ 3 פעמים לגישה מנהלית">
+            <div class="logo">
                 <i class="fas fa-code"></i>
                 <span>פיתוחים שלי</span>
             </div>
             <ul class="nav-links">
                 <li><a href="#home">בית</a></li>
                 <li><a href="#shop">חנות</a></li>
-                <li><a href="#about">עלי</a></li>
+                <li><a href="#about">עלינו</a></li>
                 <li><a href="#contact">יצירת קשר</a></li>
             </ul>
         </div>
@@ -272,7 +120,7 @@
     <section id="home" class="hero">
         <div class="hero-content">
             <h1>ברוכים הבאים לחנות הפיתוחים שלי</h1>
-            <p>אתר ובו כל הפרוייקטים שלי בעיקר בתחום האנדרואיד ובמחיצות המערכת</p>
+            <p>אתר חנות עם פרויקטים מודרניים ופתרונות יצירתיים</p>
             <button class="btn btn-primary" onclick="scrollToShop()">
                 <i class="fas fa-shopping-cart"></i> גלול לחנות
             </button>
@@ -287,17 +135,34 @@
     <!-- Shop Section -->
     <section id="shop" class="shop">
         <div class="container">
-            <h2>פרטים והורדות</h2>
+            <h2>רכישות והורדות</h2>
             <p class="section-subtitle">בחר מבין הפרויקטים והפתרונות שלנו</p>
             
             <div class="filters">
                 <button class="filter-btn active" onclick="filterProducts('all')">הכל</button>
-                <button class="filter-btn" onclick="filterProducts('web')">סקריפטים</button>
+                <button class="filter-btn" onclick="filterProducts('web')">אתרים</button>
                 <button class="filter-btn" onclick="filterProducts('app')">אפליקציות</button>
                 <button class="filter-btn" onclick="filterProducts('tools')">כלים</button>
             </div>
 
             <div class="products-grid">
+                
+                <!-- מוצר חדש: מחיצת לוגו לנגן M36 -->
+                <div class="product-card" data-category="tools">
+                    <div class="product-image" style="background: transparent;">
+                        <img src="Download/התמונה.png" alt="M36 Logo" style="width: 100%; border-radius: 15px; object-fit: cover;" onerror="this.src='https://via.placeholder.com/80/6366f1/ffffff?text=M36'">
+                    </div>
+                    <h3>מחיצת לוגו לנגן M36</h3>
+                    <p>בחר והורד דגמי לוגו מותאמים אישית לנגן שלך</p>
+                    <div class="product-meta">
+                        <span class="price">חינם</span>
+                        <span class="rating"><i class="fas fa-star"></i> 5.0</span>
+                    </div>
+                    <button class="btn btn-primary" onclick="openModal('m36-modal')" style="width: 100%;">
+                        <i class="fas fa-eye"></i> צפה בדגמים
+                    </button>
+                </div>
+
                 <div class="product-card" data-category="web">
                     <div class="product-image">
                         <i class="fas fa-globe"></i>
@@ -455,10 +320,11 @@
                     </div>
                 </div>
                 
-                <form class="contact-form" onsubmit="handleSubmit(event)">
-                    <input type="text" placeholder="שם מלא" required>
-                    <input type="email" placeholder="כתובת דוא״ל" required>
-                    <textarea placeholder="הודעה..." rows="5" required></textarea>
+                <!-- טופס מעודכן ומאובטח דרך Formspree -->
+                <form action="https://formspree.io/f/xbdnqqla" method="POST" class="contact-form">
+                    <input type="text" name="name" placeholder="שם מלא" required>
+                    <input type="email" name="email" placeholder="כתובת דוא״ל" required>
+                    <textarea name="message" placeholder="הודעה..." rows="5" required></textarea>
                     <button type="submit" class="btn btn-primary">
                         <i class="fas fa-paper-plane"></i> שלח הודעה
                     </button>
@@ -476,7 +342,7 @@
                 <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
                 <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
                 <a href="https://mitmachim.top/user/%D7%A0%D7%97%D7%9C%D7%A1-%D7%93%D7%95%D7%9F" title="פרופיל במתמחים טופ" target="_blank" rel="noopener">
-                    <img src="https://img.shields.io/badge/%D7%9E%D7%AA%D7%9E%D7%97%D7%99%D7%9D-%D7%A4%D7%A8%D7%95%D7%A4%D7%99%D7%9C-blue?style=flat-square" alt="פרופיל במתמחים טו" />
+                    <img src="https://img.shields.io/badge/%D7%9E%D7%AA%D7%9E%D7%97%D7%99%D7%9D-%D7%A4%D7%A8%D7%95%D7%A4%D7%99%D7%9C-blue?style=flat-square" alt="פרופיל במתמחים טופ" />
                 </a>
             </div>
         </div>
@@ -485,82 +351,28 @@
     <!-- Notification -->
     <div id="notification" class="notification"></div>
 
+    <!-- חלון קופץ ייעודי ל-M36 -->
+    <div id="m36-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('m36-modal')">&times;</span>
+        <h2>מחיצת לוגו לנגן M36</h2>
+        <div class="preview-container">
+          <img id="modal-preview-img" src="" alt="תצוגת דגם">
+        </div>
+        <p>בחר את הדגם המתאים לנגן שלך:</p>
+        <div class="model-selection">
+          <select id="model-select" onchange="updatePreviewImage()">
+            <option value="">טוען דגמים...</option>
+          </select>
+        </div>
+        <div class="modal-actions" style="display: flex; gap: 10px; margin-top: 20px;">
+          <button class="btn btn-primary" onclick="addLike()">❤️ <span id="likes-count">32</span></button>
+          <a id="btn-download" href="#" download class="btn btn-download" style="flex: 1; text-align: center; text-decoration: none;">⬇️ הורד קובץ</a>
+        </div>
+      </div>
+    </div>
+
     <script>
-        // Secret admin access system
-        let clickCount = 0;
-        let clickTimer;
-
-        document.getElementById('secretLogo').addEventListener('click', function() {
-            clickCount++;
-            
-            // Reset counter after 2 seconds of no clicks
-            clearTimeout(clickTimer);
-            clickTimer = setTimeout(() => {
-                clickCount = 0;
-            }, 2000);
-
-            // Show hint at 2 clicks
-            if (clickCount === 2) {
-                const hint = document.getElementById('adminHint');
-                hint.style.display = 'block';
-                setTimeout(() => {
-                    hint.style.display = 'none';
-                }, 2000);
-            }
-
-            // Activate at 3 clicks
-            if (clickCount === 3) {
-                activateAdminButton();
-                clickCount = 0;
-            }
-        });
-
-        function activateAdminButton() {
-            const adminBtn = document.getElementById('adminSecretBtn');
-            adminBtn.style.display = 'flex';
-            
-            // Add a small animation to draw attention
-            adminBtn.style.animation = 'bounce 0.6s infinite';
-            
-            // Optional: Show a subtle notification
-            showNotification('🔓 לוח ניהול נפתח!');
-        }
-
-        function promptPassword() {
-            document.getElementById('passwordModal').style.display = 'flex';
-            document.getElementById('adminPassword').focus();
-        }
-
-        function verifyAdminPassword() {
-            const password = document.getElementById('adminPassword').value;
-            const correctPassword = 'Ys@329421804';
-            const errorElement = document.getElementById('passwordError');
-
-            if (password === correctPassword) {
-                sessionStorage.setItem('adminVerified', 'true');
-                window.open('admin.html', '_blank');
-                document.getElementById('passwordModal').style.display = 'none';
-                document.getElementById('adminPassword').value = '';
-                errorElement.style.display = 'none';
-            } else {
-                errorElement.style.display = 'block';
-                document.getElementById('adminPassword').value = '';
-                document.getElementById('adminPassword').focus();
-            }
-        }
-
-        // Allow Enter key for password
-        document.getElementById('adminPassword').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') verifyAdminPassword();
-        });
-
-        // Close modal when clicking outside
-        document.getElementById('passwordModal').addEventListener('click', (e) => {
-            if (e.target.id === 'passwordModal') {
-                document.getElementById('passwordModal').style.display = 'none';
-            }
-        });
-
         function closeMaintenance() {
             var banner = document.getElementById('maintenance-banner');
             if (banner) banner.style.display = 'none';
@@ -572,4 +384,4 @@
     </script>
     <script src="script.js"></script>
 </body>
-</html>
+                                                                                          </html>
