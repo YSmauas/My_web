@@ -102,14 +102,31 @@ async function loadModels() {
             const option = document.createElement('option');
             // option.value holds the download file URL
             option.value = model.file || '';
-            // store preview separately
+            // store preview and id separately
             if (model.preview) option.dataset.preview = model.preview;
+            if (model.id) option.dataset.id = model.id;
+            // select kosher-dark as default
+            if (model.id === 'kosher-dark') option.selected = true;
             option.textContent = model.name || 'דגם';
             selectElement.appendChild(option);
         });
 
         // Ensure onchange is set (in case HTML didn't include it)
         selectElement.addEventListener('change', updatePreviewImage);
+
+        // attach download button fallback (open in new tab) once
+        const downloadBtn = document.getElementById('btn-download');
+        if (downloadBtn && !downloadBtn.dataset.listenerAdded) {
+            downloadBtn.addEventListener('click', function (e) {
+                const href = this.href;
+                if (!href) return;
+                // open in new tab to avoid some cross-origin blocking behaviors
+                // prevent default to avoid double navigation in some browsers
+                e.preventDefault();
+                window.open(href, '_blank');
+            });
+            downloadBtn.dataset.listenerAdded = '1';
+        }
 
         // set initial preview
         updatePreviewImage();
@@ -163,9 +180,13 @@ function updatePreviewImage() {
         downloadBtn.href = fileUrl;
         // prefer letting server set filename; still set download to hint
         downloadBtn.setAttribute('download', '');
+        downloadBtn.setAttribute('target', '_blank');
+        downloadBtn.setAttribute('rel', 'noopener noreferrer');
     } else {
         downloadBtn.removeAttribute('href');
         downloadBtn.removeAttribute('download');
+        downloadBtn.removeAttribute('target');
+        downloadBtn.removeAttribute('rel');
     }
 }
 
