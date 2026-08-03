@@ -31,6 +31,7 @@ function downloadProduct(filename) {
 // --- Notification Toast ---
 function showNotification(message) {
     const notification = document.getElementById('notification');
+    if (!notification) return;
     notification.textContent = message;
     notification.classList.add('show');
     setTimeout(() => notification.classList.remove('show'), 3500);
@@ -72,29 +73,56 @@ window.onclick = function(event) {
     }
 };
 
-// --- M36 Dynamic Models Loader ---
+// --- Helpers for safe URLs and image detection ---
+function isSafeUrl(url) {
+    return typeof url === 'string' && /^https?:\/\//i.test(url);
+}
+
+function isImageUrl(url) {
+    return typeof url === 'string' && /\.(png|jpe?g|gif|webp|svg)(\?.*)?$/i.test(url);
+}
+
+// --- M36 Dynamic Models Loader (supports preview + file) ---
 async function loadModels() {
     try {
         const response = await fetch('Download/logo-models.json');
         if (!response.ok) throw new Error('נכשלה טעינת קובץ הדגמים');
-        
         const models = await response.json();
         const selectElement = document.getElementById('model-select');
-        selectElement.innerHTML = ''; 
+        if (!selectElement) return;
+        selectElement.innerHTML = '';
+
+        // Add a placeholder option
+        const placeholder = document.createElement('option');
+        placeholder.value = '';
+        placeholder.textContent = 'בחר דגם...';
+        selectElement.appendChild(placeholder);
 
         models.forEach(model => {
             const option = document.createElement('option');
-            option.value = model.image;
-            option.textContent = model.name;
+            // option.value holds the download file URL
+            option.value = model.file || '';
+            // store preview separately
+            if (model.preview) option.dataset.preview = model.preview;
+            option.textContent = model.name || 'דגם';
             selectElement.appendChild(option);
         });
 
+        // Ensure onchange is set (in case HTML didn't include it)
+        selectElement.addEventListener('change', updatePreviewImage);
+
+        // set initial preview
         updatePreviewImage();
-        
     } catch (error) {
-        console.error("שגיאה בטעינת דגמים:", error);
+        console.error('שגיאה בטעינת דגמים:', error);
         const selectElement = document.getElementById('model-select');
-        selectElement.innerHTML = '<option value="">שגיאה - הדגמים לא נמצאו</option>';
+        if (selectElement) {
+            selectElement.innerHTML = '';
+            const option = document.createElement('option');
+            option.value = '';
+            option.textContent = 'שגיאה - הדגמים לא נמצאו';
+            selectElement.appendChild(option);
+        }
     }
 }
 
@@ -102,10 +130,42 @@ function updatePreviewImage() {
     const selectElement = document.getElementById('model-select');
     const previewImage = document.getElementById('modal-preview-img');
     const downloadBtn = document.getElementById('btn-download');
-    
-    if (selectElement && selectElement.value) {
-        previewImage.src = selectElement.value; 
-        downloadBtn.href = selectElement.value; 
+    if (!selectElement || !previewImage || !downloadBtn) return;
+
+    const selectedOption = selectElement.selectedOptions && selectElement.selectedOptions[0];
+    if (!selectedOption || !selectedOption.value) {
+        // nothing selected
+        previewImage.removeAttribute('src');
+        downloadBtn.removeAttribute('href');
+        downloadBtn.removeAttribute('download');
+        return;
+    }
+
+    const fileUrl = String(selectedOption.value);
+    const previewUrl = selectedOption.dataset.preview || '';
+
+    // preview: prefer serving preview if it's an image URL inside Download/ or safe URL
+    if (previewUrl && isImageUrl(previewUrl)) {
+        previewImage.src = previewUrl;
+        previewImage.alt = selectedOption.textContent || 'תצוגת דגם';
+    } else if (isImageUrl(fileUrl)) {
+        // sometimes file might be an image
+        previewImage.src = fileUrl;
+        previewImage.alt = selectedOption.textContent || 'תצוגת דגם';
+    } else {
+        // no image available: remove preview
+        previewImage.removeAttribute('src');
+        previewImage.alt = '';
+    }
+
+    // Download link: always set to fileUrl if it's an http(s) URL
+    if (isSafeUrl(fileUrl)) {
+        downloadBtn.href = fileUrl;
+        // prefer letting server set filename; still set download to hint
+        downloadBtn.setAttribute('download', '');
+    } else {
+        downloadBtn.removeAttribute('href');
+        downloadBtn.removeAttribute('download');
     }
 }
 
