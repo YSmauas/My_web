@@ -2,26 +2,26 @@
   {
     "id": "top",
     "name": "דגם מתמחים טופ",
-    "image": "Download/%D7%94%D7%AA%D7%9E%D7%95%D7%A0%D7%94.png"
-  },
-  {
-    "id": "q6-dark",
-    "name": "דגם Q6 כהה",
-    "image": "Download/%D7%94%D7%AA%D7%9E%D7%95%D7%A0%D7%94%20(1).png"
+    "image": "https://mitmachim.top/assets/uploads/files/1770730588683-logo.bin"
   },
   {
     "id": "kosher-dark",
     "name": "דגם כשר כהה",
-    "image": "Download/img1.png"
+    "image": "https://mitmachim.top/assets/uploads/files/1770976371167-logo.bin"
   },
   {
     "id": "kosher-light",
     "name": "דגם כשר בהיר",
-    "image": "Download/img1%20(1).png"
+    "image": "https://mitmachim.top/assets/uploads/files/1770976497337-logo.bin"
   },
   {
     "id": "q6-light",
     "name": "דגם Q6 בהיר",
-    "image": "Download/02.png"
+    "image": "https://mitmachim.top/assets/uploads/files/1771171178216-logo.bin"
+  },
+  {
+    "id": "q6-dark",
+    "name": "דגם Q6 כהה",
+    "image": "https://mitmachim.top/assets/uploads/files/1770976270691-logo.bin"
   }
 ]
