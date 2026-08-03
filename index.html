@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>פיתוחים שלי - חנות ההורדות</title>
     
+    <!-- Content Security Policy (basic) -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://formspree.io;">
+
     <!-- Google Fonts: Rubik -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,29 +21,30 @@
 </head>
 <body>
 
-    <!-- Anti-Debug Protection -->
+    <!-- Lightweight non-destructive anti-debug check -->
     <script>
-        document.addEventListener('contextmenu', (e) => e.preventDefault());
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'F12' || 
-                (e.ctrlKey && e.shiftKey && ['I','J','C','K'].includes(e.key))) {
-                e.preventDefault();
+      // Run once after DOM is ready; do not clear console or replace body.
+      document.addEventListener('DOMContentLoaded', function() {
+        try {
+          const threshold = 2000; // high to avoid false positives
+          if (window.outerHeight - window.innerHeight > threshold ||
+              window.outerWidth - window.innerWidth > threshold) {
+            const banner = document.getElementById('maintenance-banner');
+            if (banner) {
+              var p = banner.querySelector('p');
+              if (p) p.textContent = 'מצב בדיקה זוהה — אם אתה מפתח אנא בדוק את הסביבה.';
+              banner.style.display = 'flex';
             }
-        });
-
-        const threshold = 160;
-        setInterval(() => {
-            if (window.outerHeight - window.innerHeight > threshold || 
-                window.outerWidth - window.innerWidth > threshold) {
-                document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;background:#080d1a;color:#fff;font-size:24px;font-family:sans-serif;">🔒 הגישה לכלים אלו חסומה.</div>';
-                console.clear();
-            }
-        }, 500);
+          }
+        } catch (err) {
+          // non-fatal
+          console.warn('anti-debug check error:', err);
+        }
+      });
     </script>
 
     <!-- Maintenance Banner -->
-    <div id="maintenance-banner" role="dialog" aria-modal="true">
+    <div id="maintenance-banner" role="dialog" aria-modal="true" style="display:flex;">
         <div class="glass-card maintenance-card">
             <h2><i class="fas fa-tools"></i> האתר בבנייה</h2>
             <p>האתר אינו פעיל כרגע ונמצא בתהליך שדרוג מקיף. נחזור בקרוב!</p>
@@ -304,7 +308,7 @@
             <div class="social-links">
                 <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
                 <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="https://mitmachim.top/user/%D7%A0%D7%97%D7%9C%D7%A1-%D7%93%D7%95%D7%9F" title="פרופיל במתמחים טופ" target="_blank" rel="noopener">
+                <a href="https://mitmachim.top/user/%D7%A0%D7%97%D7%9C%D7%A1-%D7%93%D7%95%D7%9F" title="פרופיל במתמחים טופ" target="_blank" rel="noopener noreferrer">
                     <img src="https://img.shields.io/badge/%D7%9E%D7%AA%D7%9E%D7%97%D7%99%D7%9D-%D7%A4%D7%A8%D7%95%D7%A4%D7%99%D7%9C-blue?style=flat-square" alt="מתמחים טופ" />
                 </a>
             </div>
