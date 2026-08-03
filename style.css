@@ -700,3 +700,72 @@ body {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* ===== Modern modal & list animations ===== */
+@keyframes modalPop {
+  from { transform: translateY(18px) scale(.98); opacity: 0; }
+  to   { transform: translateY(0) scale(1); opacity: 1; }
+}
+@keyframes itemFadeUp {
+  from { transform: translateY(10px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+@keyframes previewPulse {
+  0% { transform: scale(0.98); filter: blur(0.8px); opacity: 0.96; }
+  50% { transform: scale(1.01); filter: blur(0); opacity: 1; }
+  100% { transform: scale(1); filter: blur(0); opacity: 1; }
+}
+
+/* apply to modal content on open */
+.modal.show .modal-content {
+  animation: modalPop .32s cubic-bezier(.2,.9,.3,1);
+  will-change: transform, opacity;
+}
+
+/* preview image subtle pulse when changed */
+.preview-container img.fade-in {
+  animation: previewPulse .6s ease both;
+}
+
+/* model items entrance (stagger handled by JS) */
+.model-item {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: transform .28s cubic-bezier(.2,.9,.3,1), opacity .28s ease;
+}
+.model-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* hover micro-interaction */
+.model-item:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 10px 30px rgba(2,6,23,0.45);
+}
+
+/* nice focus ring for keyboard users */
+.model-item:focus {
+  outline: 3px solid rgba(99,102,241,0.18);
+  outline-offset: 6px;
+}
+
+/* subtle button pop on download */
+#btn-download {
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+#btn-download:active {
+  transform: translateY(1px) scale(.995);
+  box-shadow: 0 6px 18px rgba(99,102,241,0.12) inset;
+}
+
+/* reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .modal.show .modal-content,
+  .model-item,
+  .preview-container img.fade-in {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}
