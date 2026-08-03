@@ -111,7 +111,7 @@
                 <div class="product-card glass-card" data-category="tools">
                     <div class="product-badge">מומלץ</div>
                     <div class="product-image">
-                        <img src="Download/התמונה.png" alt="M36 Logo" onerror="this.src='https://via.placeholder.com/80/6366f1/ffffff?text=M36'">
+                        <img src="Download/img1.png" alt="דגם כשר כהה" onerror="this.src='https://via.placeholder.com/80/6366f1/ffffff?text=M36'">
                     </div>
                     <h3>מחיצת לוגו לנגן M36</h3>
                     <p>בחר והורד דגמי לוגו מותאמים אישית לנגן שלך בקלות</p>
@@ -323,18 +323,22 @@
       <div class="modal-content glass-card">
         <span class="close-btn" onclick="closeModal('m36-modal')">&times;</span>
         <h3>מחיצת לוגו לנגן M36</h3>
-        <div class="preview-container">
-          <img id="modal-preview-img" src="" alt="תצוגת דגם">
-        </div>
-        <p>בחר את הדגם המתאים לנגן שלך:</p>
-        <div class="model-selection">
-          <select id="model-select" onchange="updatePreviewImage()">
-            <option value="">טוען דגמים...</option>
-          </select>
-        </div>
-        <div class="modal-actions">
-          <button class="btn btn-secondary" onclick="addLike()">❤️ <span id="likes-count">32</span></button>
-          <a id="btn-download" href="#" download class="btn btn-download-modal">⬇️ הורד קובץ</a>
+        <div class="modal-grid">
+          <div class="preview-container">
+            <img id="modal-preview-img" src="" alt="תצוגת דגם">
+          </div>
+          <div>
+            <p>בחר את הדגם המתאים לנגן שלך:</p>
+            <div class="model-selection">
+              <select id="model-select" onchange="updatePreviewImage()">
+                <!-- options loaded dynamically -->
+              </select>
+            </div>
+            <div class="modal-actions">
+              <button class="btn btn-secondary" onclick="addLike()">❤️ <span id="likes-count">32</span></button>
+              <a id="btn-download" href="#" download class="btn btn-download-modal">⬇️ הורד קובץ</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
