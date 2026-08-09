@@ -6,7 +6,7 @@
     <title>פיתוחים שלי - חנות ההורדות</title>
     
     <!-- Content Security Policy (basic) -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://formspree.io;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com http[...]">
 
     <!-- Google Fonts: Rubik -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -139,7 +139,7 @@
         <div class="glass-card maintenance-card">
             <h2><i class="fas fa-tools"></i> האתר בבנייה</h2>
             <p>האתר אינו פעיל כרגע ונמצא בתהליך שדרוג מקיף. נחזור בקרוב!</p>
-            <button type="button" class="btn btn-primary" onclick="document.getElementById('maintenance-banner').style.display='none'">הבנתי, המשך</button>
+            <button id="maintenance-close" type="button" class="btn btn-primary">הבנתי, המשך</button>
         </div>
     </div>
 
@@ -221,7 +221,65 @@
         </div>
     </section>
 
-    <!-- About, Contact, Footer ... (unchanged) -->
+    <!-- About Section (placeholder) -->
+    <section id="about" class="about">
+      <div class="container about-grid">
+        <div class="about-text">
+          <h2>עלינו</h2>
+          <p class="section-subtitle">עיצובים וכלים פרקטיים לבניית חוויות משתמש מודרניות.</p>
+        </div>
+        <div class="about-stats">
+          <div class="stat-box glass-card">
+            <h3>1,200+</h3>
+            <p>הורדות</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <div class="section-header">
+          <h2>יצירת קשר</h2>
+          <p class="section-subtitle">יש לך שאלה או בקשה מיוחדת? נשמח לשמוע ממך</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-info glass-card">
+            <div class="contact-item">
+              <div class="icon-wrap"><i class="fas fa-envelope"></i></div>
+              <div>
+                <h4>דוא״ל</h4>
+                <a href="mailto:ysrlmyrmws1@gmail.com">ysrlmyrmws1@gmail.com</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="icon-wrap"><i class="fas fa-phone"></i></div>
+              <div>
+                <h4>טלפון</h4>
+                <a href="tel:0556747686">0556747686</a>
+              </div>
+            </div>
+          </div>
+
+          <form id="contact-form" action="https://formspree.io/f/xbdnqqla" method="POST" class="contact-form glass-card" novalidate>
+            <div class="form-group">
+              <input type="text" name="name" placeholder="שם מלא" required>
+            </div>
+            <div class="form-group">
+              <input type="email" name="email" placeholder="כתובת דוא״ל" required>
+            </div>
+            <div class="form-group">
+              <textarea name="message" placeholder="איך אפשר לעזור לך?..." rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-paper-plane"></i> שלח הודעה
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
 
     <!-- Notification Toast -->
     <div id="notification" class="notification glass-card"></div>
@@ -238,13 +296,9 @@
           <div>
             <p style="margin-top:0">בחר את הדגם המתאים לנגן שלך:</p>
             <div class="model-selection">
-              <button id="model-select-btn" class="custom-select-btn" aria-haspopup="listbox" aria-expanded="false">
-                <span id="model-selected-text">בחר דגם</span>
-                <i class="fas fa-chevron-down"></i>
-              </button>
-              <div id="model-list" class="model-list" role="listbox" aria-hidden="true">
-                <!-- items populated dynamically -->
-              </div>
+              <select id="model-select">
+                <!-- populated dynamically by script.js -->
+              </select>
             </div>
             <div class="modal-actions" style="margin-top:14px; display:flex; gap:8px;">
               <button class="btn btn-secondary" onclick="addLike()">❤️ <span id="likes-count">32</span></button>
@@ -256,6 +310,16 @@
     </div>
 
     <!-- Script -->
+    <script>
+      // ensure maintenance close button works without relying on inline onclick
+      document.addEventListener('DOMContentLoaded', function(){
+        const mClose = document.getElementById('maintenance-close');
+        if (mClose) mClose.addEventListener('click', function(){
+          const banner = document.getElementById('maintenance-banner');
+          if (banner) banner.style.display = 'none';
+        });
+      });
+    </script>
     <script src="contact-form-ajax.js"></script>
     <script src="script.js"></script>
 </body>
