@@ -1,0 +1,27 @@
+[
+  {
+    "id": "top",
+    "name": "דגם מתמחים טופ",
+    "image": "Download/התמונה.png"
+  },
+  {
+    "id": "q6-dark",
+    "name": "דגם Q6 כהה",
+    "image": "Download/התמונה (1).png"
+  },
+  {
+    "id": "kosher-dark",
+    "name": "דגם כשר כהה",
+    "image": "Download/img1.png"
+  },
+  {
+    "id": "kosher-light",
+    "name": "דגם כשר בהיר",
+    "image": "Download/img1 (1).png"
+  },
+  {
+    "id": "q6-light",
+    "name": "דגם Q6 בהיר",
+    "image": "Download/02.png"
+  }
+]
