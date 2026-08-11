@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>פיתוחים שלי - חנות ההורדות</title>
     
-    <!-- Content Security Policy (basic) -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com http[...]">
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://formspree.io;">
 
     <!-- Google Fonts: Rubik -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,23 +18,78 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
-    <style>
-    /* Modal + model list improvements (inline for quicker rollout) */
-    .modal-content {
-      max-width: 940px;
-      width: 96%;
-      padding: 20px;
-      border-radius: 14px;
-    }
-    .modal-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 18px;
-      align-items: start;
-    }
-    @media (min-width: 860px) {
-      .modal-grid { grid-template-columns: 1fr 420px; }
-      .preview-container { max-width: 520px; margin: 0 auto; }
+</head>
+<body>
+
+    <!-- Maintenance Banner -->
+    <div id="maintenance-banner" role="dialog" aria-modal="true" style="display:none;">
+        <div class="glass-card maintenance-card">
+            <h2><i class="fas fa-tools"></i> האתר בבנייה</h2>
+            <p>האתר אינו פעיל כרגע ונמצא בתהליך שדרוג מקיף. נחזור בקרוב!</p>
+            <button id="maintenance-close" type="button" class="btn btn-primary" data-action="close-maintenance">הבנתי, המשך</button>
+        </div>
+    </div>
+
+    <!-- Glowing Background Ambient Spheres -->
+    <div class="bg-glow blob-1"></div>
+    <div class="bg-glow blob-2"></div>
+    <div class="bg-glow blob-3"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar glass-nav">
+        <div class="container nav-content">
+            <div class="logo">
+                <div class="logo-icon"><i class="fas fa-terminal"></i></div>
+                <span>פיתוחים שלי</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">בית</a></li>
+                <li><a href="#shop">חנות</a></li>
+                <li><a href="#about">עלינו</a></li>
+                <li><a href="#contact">צור קשר</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <span class="badge"><i class="fas fa-sparkles"></i> חנות פיתוחים ופתרונות 2026</span>
+                <h1>קוד נקי. עיצוב מתקדם.<br><span class="gradient-text">חוויית משתמש מנצחת.</span></h1>
+                <p>הורדות ישירות, כלים מותאמים אישית ופרויקטים שנבנו ברמה הגבוהה ביותר.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" data-action="scroll-to-shop">
+                        <i class="fas fa-shopping-bag"></i> גלול לחנות
+                    </button>
+                    <a href="#about" class="btn btn-secondary">למד עוד</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shop Section -->
+    <section id="shop" class="shop">
+        <div class="container">
+            <div class="section-header">
+                <h2>רכישות והורדות</h2>
+                <p class="section-subtitle">בחר מבין הפרויקטים והפתרונות השונים שלנו</p>
+            </div>
+            
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">הכל</button>
+                <button class="filter-btn" data-filter="web">אתרים</button>
+                <button class="filter-btn" data-filter="app">אפליקציות</button>
+                <button class="filter-btn" data-filter="tools">כלים</button>
+            </div>
+
+            <div class="products-grid">
+
+                <!-- M36 Product Card -->
+                <div class="product-card glass-card" data-category="tools">
+                    <div class="product-badge">מומלץ</div>
+                    <div class="product-image">
+                        <img src="Download/img1.png"      .preview-container { max-width: 520px; margin: 0 auto; }
     }
     .preview-container {
       display:flex;
