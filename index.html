@@ -6,7 +6,7 @@
     <title>פיתוחים שלי - חנות ההורדות</title>
     
     <!-- Content Security Policy -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://formspree.io;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://formspree.io https://mitmachim.top;">
 
     <!-- Google Fonts: Rubik -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,174 +27,6 @@
             <h2><i class="fas fa-tools"></i> האתר בבנייה</h2>
             <p>האתר אינו פעיל כרגע ונמצא בתהליך שדרוג מקיף. נחזור בקרוב!</p>
             <button id="maintenance-close" type="button" class="btn btn-primary" data-action="close-maintenance">הבנתי, המשך</button>
-        </div>
-    </div>
-
-    <!-- Glowing Background Ambient Spheres -->
-    <div class="bg-glow blob-1"></div>
-    <div class="bg-glow blob-2"></div>
-    <div class="bg-glow blob-3"></div>
-
-    <!-- Navigation Bar -->
-    <nav class="navbar glass-nav">
-        <div class="container nav-content">
-            <div class="logo">
-                <div class="logo-icon"><i class="fas fa-terminal"></i></div>
-                <span>פיתוחים שלי</span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#home">בית</a></li>
-                <li><a href="#shop">חנות</a></li>
-                <li><a href="#about">עלינו</a></li>
-                <li><a href="#contact">צור קשר</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container hero-container">
-            <div class="hero-content">
-                <span class="badge"><i class="fas fa-sparkles"></i> חנות פיתוחים ופתרונות 2026</span>
-                <h1>קוד נקי. עיצוב מתקדם.<br><span class="gradient-text">חוויית משתמש מנצחת.</span></h1>
-                <p>הורדות ישירות, כלים מותאמים אישית ופרויקטים שנבנו ברמה הגבוהה ביותר.</p>
-                <div class="hero-buttons">
-                    <button class="btn btn-primary" data-action="scroll-to-shop">
-                        <i class="fas fa-shopping-bag"></i> גלול לחנות
-                    </button>
-                    <a href="#about" class="btn btn-secondary">למד עוד</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Shop Section -->
-    <section id="shop" class="shop">
-        <div class="container">
-            <div class="section-header">
-                <h2>רכישות והורדות</h2>
-                <p class="section-subtitle">בחר מבין הפרויקטים והפתרונות השונים שלנו</p>
-            </div>
-            
-            <div class="filters">
-                <button class="filter-btn active" data-filter="all">הכל</button>
-                <button class="filter-btn" data-filter="web">אתרים</button>
-                <button class="filter-btn" data-filter="app">אפליקציות</button>
-                <button class="filter-btn" data-filter="tools">כלים</button>
-            </div>
-
-            <div class="products-grid">
-
-                <!-- M36 Product Card -->
-                <div class="product-card glass-card" data-category="tools">
-                    <div class="product-badge">מומלץ</div>
-                    <div class="product-image">
-                        <img src="Download/img1.png"      .preview-container { max-width: 520px; margin: 0 auto; }
-    }
-    .preview-container {
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      min-height: 320px;
-      background: rgba(0,0,0,0.45);
-      border-radius: 12px;
-      padding: 12px;
-    }
-    .preview-container img {
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-      border-radius: 8px;
-      background: rgba(255,255,255,0.02);
-      max-height: 560px;
-    }
-
-    /* Custom select button */
-    .custom-select-btn {
-      width: 100%;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 12px;
-      padding: 12px 14px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 12px;
-      color: var(--text-main, #eee);
-      font-weight: 600;
-      cursor: pointer;
-      box-shadow: 0 4px 18px rgba(0,0,0,0.45);
-    }
-
-    .model-list {
-      margin-top: 10px;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.04);
-      border-radius: 12px;
-      overflow: hidden;
-      max-height: 320px;
-      overflow-y: auto;
-    }
-
-    .model-item {
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 12px;
-      padding: 12px 14px;
-      border-bottom: 1px solid rgba(255,255,255,0.03);
-      cursor: pointer;
-      transition: background .12s, transform .06s;
-      background: transparent;
-    }
-    .model-item:last-child { border-bottom: none; }
-    .model-item:hover { background: rgba(255,255,255,0.02); transform: translateY(-1px); }
-    .model-item.selected { background: linear-gradient(90deg, rgba(99,102,241,0.12), rgba(124,58,237,0.06)); }
-
-    .model-item .label { font-weight: 600; }
-    .model-item .meta { opacity: 0.75; font-size: 0.9rem; }
-
-    /* ensure modal centered on tall screens */
-    .modal { display:none; align-items:center; justify-content:center; padding: 24px; }
-    .modal.show { display:flex; }
-
-    /* small-screen tweaks */
-    @media (max-height: 600px) {
-      .preview-container { min-height: 220px; }
-      .model-list { max-height: 200px; }
-    }
-    </style>
-</head>
-<body>
-
-    <!-- Lightweight non-destructive anti-debug check -->
-    <script>
-      // Run once after DOM is ready; do not clear console or replace body.
-      document.addEventListener('DOMContentLoaded', function() {
-        try {
-          const threshold = 2000; // high to avoid false positives
-          if (window.outerHeight - window.innerHeight > threshold ||
-              window.outerWidth - window.innerWidth > threshold) {
-            const banner = document.getElementById('maintenance-banner');
-            if (banner) {
-              var p = banner.querySelector('p');
-              if (p) p.textContent = 'מצב בדיקה זוהה — אם אתה מפתח אנא בדוק את הסביבה.';
-              banner.style.display = 'flex';
-            }
-          }
-        } catch (err) {
-          // non-fatal
-          console.warn('anti-debug check error:', err);
-        }
-      });
-    </script>
-
-    <!-- Maintenance Banner -->
-    <div id="maintenance-banner" role="dialog" aria-modal="true" style="display:flex;">
-        <div class="glass-card maintenance-card">
-            <h2><i class="fas fa-tools"></i> האתר בבנייה</h2>
-            <p>האתר אינו פעיל כרגע ונמצא בתהליך שדרוג מקיף. נחזור בקרוב!</p>
-            <button id="maintenance-close" type="button" class="btn btn-primary">הבנתי, המשך</button>
         </div>
     </div>
 
@@ -253,7 +85,7 @@
 
             <div class="products-grid">
                 
-                <!-- M36 Product Card -->
+                <!-- Existing M36 Product Card -->
                 <div class="product-card glass-card" data-category="tools">
                     <div class="product-badge">מומלץ</div>
                     <div class="product-image">
@@ -268,6 +100,24 @@
                     <button class="btn btn-primary" onclick="openModal('m36-modal')" style="width: 100%;">
                         <i class="fas fa-eye"></i> צפה בדגמים
                     </button>
+                </div>
+
+                <!-- NEW: Separate Product - M36 Logo Animation Module -->
+                <div class="product-card glass-card" data-category="tools">
+                  <div class="product-badge">חדש</div>
+                  <div class="product-image">
+                    <img src="https://mitmachim.top/assets/uploads/files/1771971033650-m36_logo_anim_v2.0.gif" alt="M36 Logo Animation" onerror="this.src='https://via.placeholder.com/80/6366f1/ffffff?text=M36'">
+                  </div>
+                  <h3>מודול מג'יסק לשינוי לוגו ואנימציה — M36 v2.0</h3>
+                  <p>מודול להוספת אנימציית GIF ולשינוי לוגו לנגני M36. כולל קובץ ZIP עם הקבצים והוראות.</p>
+                  <div class="product-meta">
+                    <span class="price">חינם</span>
+                    <span class="rating"><i class="fas fa-star"></i> 4.9</span>
+                  </div>
+                  <div style="display:flex; gap:8px; margin-top:8px;">
+                    <a class="btn btn-download" href="https://mitmachim.top/assets/uploads/files/1771971033650-m36_logo_anim_v2.0.zip" target="_blank" rel="noopener noreferrer">⬇️ הורד</a>
+                    <button class="btn btn-secondary" onclick="document.getElementById('m36-anim-modal').style.display='flex'">👁️ תצוגה</button>
+                  </div>
                 </div>
 
                 <!-- other products... (unchanged) -->
@@ -323,7 +173,7 @@
               <input type="text" name="name" placeholder="שם מלא" required>
             </div>
             <div class="form-group">
-              <input type="email" name="email" placeholder="כתובת דוא״ל" required>
+              <input type="email" name="email" placeholder="כתובת דוא"'ל" required>
             </div>
             <div class="form-group">
               <textarea name="message" placeholder="איך אפשר לעזור לך?..." rows="5" required></textarea>
@@ -339,7 +189,7 @@
     <!-- Notification Toast -->
     <div id="notification" class="notification glass-card"></div>
 
-    <!-- M36 Modal -->
+    <!-- M36 Modal (existing models) -->
     <div id="m36-modal" class="modal" aria-hidden="true">
       <div class="modal-content glass-card" role="dialog" aria-modal="true" aria-labelledby="m36-title">
         <button class="close-btn" onclick="closeModal('m36-modal')" aria-label="סגור">&times;</button>
@@ -358,6 +208,26 @@
             <div class="modal-actions" style="margin-top:14px; display:flex; gap:8px;">
               <button class="btn btn-secondary" onclick="addLike()">❤️ <span id="likes-count">32</span></button>
               <a id="btn-download" href="#" download class="btn btn-download-modal">⬇️ הורד קובץ</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEW: M36 Animation Preview Modal (separate product) -->
+    <div id="m36-anim-modal" class="modal" aria-hidden="true">
+      <div class="modal-content glass-card" role="dialog" aria-modal="true" aria-labelledby="m36-anim-title">
+        <button class="close-btn" onclick="closeModal('m36-anim-modal')" aria-label="סגור">&times;</button>
+        <h3 id="m36-anim-title">תצוגת מודול אנימציית לוגו - M36 v2.0</h3>
+        <div class="modal-grid">
+          <div class="preview-container">
+            <img src="https://mitmachim.top/assets/uploads/files/1771971033650-m36_logo_anim_v2.0.gif" alt="תצוגת אנימציה" style="max-height:560px; width:auto; display:block; margin:0 auto;">
+          </div>
+          <div>
+            <p style="margin-top:0">מודול זה כולל קובץ ZIP המכיל את קבצי המודול והוראות התקנה למערכת M36.</p>
+            <div style="display:flex; gap:8px; margin-top:12px;">
+              <a class="btn btn-download-modal" href="https://mitmachim.top/assets/uploads/files/1771971033650-m36_logo_anim_v2.0.zip" target="_blank" rel="noopener noreferrer">⬇️ הורד קובץ</a>
+              <button class="btn btn-secondary" onclick="closeModal('m36-anim-modal')">סגור</button>
             </div>
           </div>
         </div>
