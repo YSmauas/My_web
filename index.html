@@ -6,7 +6,7 @@
     <title>פיתוחים שלי - חנות ההורדות</title>
     
     <!-- Content Security Policy -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://formspree.io https://mitmachim.top;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://formspree.io;">
 
     <!-- Google Fonts: Rubik -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -59,7 +59,7 @@
                 <h1>קוד נקי. עיצוב מתקדם.<br><span class="gradient-text">חוויית משתמש מנצחת.</span></h1>
                 <p>הורדות ישירות, כלים מותאמים אישית ופרויקטים שנבנו ברמה הגבוהה ביותר.</p>
                 <div class="hero-buttons">
-                    <button class="btn btn-primary" onclick="scrollToShop()">
+                    <button class="btn btn-primary" data-action="scroll-to-shop">
                         <i class="fas fa-shopping-bag"></i> גלול לחנות
                     </button>
                     <a href="#about" class="btn btn-secondary">למד עוד</a>
@@ -77,19 +77,19 @@
             </div>
             
             <div class="filters">
-                <button class="filter-btn active" onclick="filterProducts('all', this)">הכל</button>
-                <button class="filter-btn" onclick="filterProducts('web', this)">אתרים</button>
-                <button class="filter-btn" onclick="filterProducts('app', this)">אפליקציות</button>
-                <button class="filter-btn" onclick="filterProducts('tools', this)">כלים</button>
+                <button class="filter-btn active" data-filter="all">הכל</button>
+                <button class="filter-btn" data-filter="web">אתרים</button>
+                <button class="filter-btn" data-filter="app">אפליקציות</button>
+                <button class="filter-btn" data-filter="tools">כלים</button>
             </div>
 
             <div class="products-grid">
-                
-                <!-- Existing M36 Product Card -->
+
+                <!-- M36 Product Card -->
                 <div class="product-card glass-card" data-category="tools">
                     <div class="product-badge">מומלץ</div>
                     <div class="product-image">
-                        <img src="Download/img1.png" alt="דגם כשר כהה" onerror="this.src='https://via.placeholder.com/80/6366f1/ffffff?text=M36'">
+                        <img src="Download/img1.png" alt="דגם כשר כהה" data-fallback="https://via.placeholder.com/80/6366f1/ffffff?text=M36">
                     </div>
                     <h3>מחיצת לוגו לנגן M36</h3>
                     <p>בחר והורד דגמי לוגו מותאמים אישית לנגן שלך בקלות</p>
@@ -97,30 +97,41 @@
                         <span class="price">חינם</span>
                         <span class="rating"><i class="fas fa-star"></i> 5.0</span>
                     </div>
-                    <button class="btn btn-primary" onclick="openModal('m36-modal')" style="width: 100%;">
+                    <button class="btn btn-primary" data-action="open-modal" data-modal="m36-modal" style="width: 100%;">
                         <i class="fas fa-eye"></i> צפה בדגמים
                     </button>
                 </div>
 
-                <!-- NEW: Separate Product - M36 Logo Animation Module -->
+                <!-- M36 Logo & Animation Magisk Module -->
                 <div class="product-card glass-card" data-category="tools">
-                  <div class="product-badge">חדש</div>
-                  <div class="product-image">
-                    <img src="https://mitmachim.top/assets/uploads/files/1771971033650-m36_logo_anim_v2.0.gif" alt="M36 Logo Animation" onerror="this.src='https://via.placeholder.com/80/6366f1/ffffff?text=M36'">
-                  </div>
-                  <h3>מודול מג'יסק לשינוי לוגו ואנימציה — M36 v2.0</h3>
-                  <p>מודול להוספת אנימציית GIF ולשינוי לוגו לנגני M36. כולל קובץ ZIP עם הקבצים והוראות.</p>
-                  <div class="product-meta">
-                    <span class="price">חינם</span>
-                    <span class="rating"><i class="fas fa-star"></i> 4.9</span>
-                  </div>
-                  <div style="display:flex; gap:8px; margin-top:8px;">
-                    <a class="btn btn-download" href="https://mitmachim.top/assets/uploads/files/1771971033650-m36_logo_anim_v2.0.zip" target="_blank" rel="noopener noreferrer">⬇️ הורד</a>
-                    <button class="btn btn-secondary" onclick="document.getElementById('m36-anim-modal').style.display='flex'">👁️ תצוגה</button>
-                  </div>
+                    <div class="product-badge">חדש</div>
+                    <div class="product-image">
+                        <img src="Download/m36-logo-anim-preview.gif" alt="תצוגה מקדימה - שינוי לוגו ואנימציה M36" data-fallback="https://via.placeholder.com/80/6366f1/ffffff?text=M36">
+                    </div>
+                    <h3>שינוי לוגו ואנימציה לנגן M36</h3>
+                    <p>מודול Magisk שצורב לוגו ואנימציית אתחול חדשים לנגן. כולל גיבוי אוטומטי ושחזור מלא בהסרה. דורש 2 ריבוטים להשלמה.</p>
+                    <div class="product-meta">
+                        <span class="price">חינם</span>
+                        <span class="rating"><i class="fas fa-star"></i> גרסה 2.0</span>
+                    </div>
+                    <a href="Download/m36_logo_anim_v2_0.zip" download class="btn btn-primary" style="width: 100%;">
+                        <i class="fas fa-download"></i> הורד מודול (ZIP)
+                    </a>
                 </div>
 
-                <!-- other products... (unchanged) -->
+                <!-- Placeholder: no "web" products yet -->
+                <div class="product-card glass-card coming-soon" data-category="web">
+                    <div class="product-image icon-bg"><i class="fas fa-globe"></i></div>
+                    <h3>אתרים - בקרוב</h3>
+                    <p>פרויקטי אתרים חדשים יעלו כאן בקרוב</p>
+                </div>
+
+                <!-- Placeholder: no "app" products yet -->
+                <div class="product-card glass-card coming-soon" data-category="app">
+                    <div class="product-image icon-bg"><i class="fas fa-mobile-alt"></i></div>
+                    <h3>אפליקציות - בקרוב</h3>
+                    <p>אפליקציות אנדרואיד חדשות יעלו כאן בקרוב</p>
+                </div>
 
             </div>
         </div>
@@ -173,7 +184,7 @@
               <input type="text" name="name" placeholder="שם מלא" required>
             </div>
             <div class="form-group">
-              <input type="email" name="email" placeholder="כתובת דוא"'ל" required>
+              <input type="email" name="email" placeholder="כתובת דוא״ל" required>
             </div>
             <div class="form-group">
               <textarea name="message" placeholder="איך אפשר לעזור לך?..." rows="5" required></textarea>
@@ -186,13 +197,27 @@
       </div>
     </section>
 
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer-content">
+        <div class="logo">
+          <div class="logo-icon"><i class="fas fa-terminal"></i></div>
+          <span>פיתוחים שלי</span>
+        </div>
+        <div class="social-links">
+          <a href="https://mitmachim.top/user/%D7%A0%D7%97%D7%9C%D7%A1-%D7%93%D7%95%D7%9F" target="_blank" rel="noopener noreferrer" aria-label="פרופיל במתמחים טופ"><i class="fas fa-user"></i></a>
+          <a href="mailto:ysrlmyrmws1@gmail.com" aria-label="דוא״ל"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+    </footer>
+
     <!-- Notification Toast -->
     <div id="notification" class="notification glass-card"></div>
 
-    <!-- M36 Modal (existing models) -->
+    <!-- M36 Modal -->
     <div id="m36-modal" class="modal" aria-hidden="true">
       <div class="modal-content glass-card" role="dialog" aria-modal="true" aria-labelledby="m36-title">
-        <button class="close-btn" onclick="closeModal('m36-modal')" aria-label="סגור">&times;</button>
+        <button class="close-btn" data-action="close-modal" data-modal="m36-modal" aria-label="סגור">&times;</button>
         <h3 id="m36-title">מחיצת לוגו לנגן M36</h3>
         <div class="modal-grid">
           <div class="preview-container">
@@ -206,7 +231,7 @@
               </select>
             </div>
             <div class="modal-actions" style="margin-top:14px; display:flex; gap:8px;">
-              <button class="btn btn-secondary" onclick="addLike()">❤️ <span id="likes-count">32</span></button>
+              <button class="btn btn-secondary" data-action="add-like">❤️ <span id="likes-count">32</span></button>
               <a id="btn-download" href="#" download class="btn btn-download-modal">⬇️ הורד קובץ</a>
             </div>
           </div>
@@ -214,38 +239,9 @@
       </div>
     </div>
 
-    <!-- NEW: M36 Animation Preview Modal (separate product) -->
-    <div id="m36-anim-modal" class="modal" aria-hidden="true">
-      <div class="modal-content glass-card" role="dialog" aria-modal="true" aria-labelledby="m36-anim-title">
-        <button class="close-btn" onclick="closeModal('m36-anim-modal')" aria-label="סגור">&times;</button>
-        <h3 id="m36-anim-title">תצוגת מודול אנימציית לוגו - M36 v2.0</h3>
-        <div class="modal-grid">
-          <div class="preview-container">
-            <img src="https://mitmachim.top/assets/uploads/files/1771971033650-m36_logo_anim_v2.0.gif" alt="תצוגת אנימציה" style="max-height:560px; width:auto; display:block; margin:0 auto;">
-          </div>
-          <div>
-            <p style="margin-top:0">מודול זה כולל קובץ ZIP המכיל את קבצי המודול והוראות התקנה למערכת M36.</p>
-            <div style="display:flex; gap:8px; margin-top:12px;">
-              <a class="btn btn-download-modal" href="https://mitmachim.top/assets/uploads/files/1771971033650-m36_logo_anim_v2.0.zip" target="_blank" rel="noopener noreferrer">⬇️ הורד קובץ</a>
-              <button class="btn btn-secondary" onclick="closeModal('m36-anim-modal')">סגור</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Script -->
-    <script>
-      // ensure maintenance close button works without relying on inline onclick
-      document.addEventListener('DOMContentLoaded', function(){
-        const mClose = document.getElementById('maintenance-close');
-        if (mClose) mClose.addEventListener('click', function(){
-          const banner = document.getElementById('maintenance-banner');
-          if (banner) banner.style.display = 'none';
-        });
-      });
-    </script>
+    <!-- Scripts -->
     <script src="contact-form-ajax.js"></script>
     <script src="script.js"></script>
+    <script src="web-fixes.js"></script>
 </body>
-</html>
+        </html>
