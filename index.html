@@ -5,23 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>פיתוחים שלי - חנות ההורדות</title>
     
-    <!-- Content Security Policy -->
+    <!-- מדיניות אבטחת תוכן - Content Security Policy -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://formspree.io;">
 
-    <!-- Google Fonts: Rubik -->
+    <!-- גופנים של גוגל -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- FontAwesome Icons -->
+    <!-- אייקונים -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Custom CSS -->
+    <!-- עיצוב ראשי -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Maintenance Banner -->
+    <!-- באנר תחזוקה (מוסתר כברירת מחדל) -->
     <div id="maintenance-banner" role="dialog" aria-modal="true" style="display:none;">
         <div class="glass-card maintenance-card">
             <h2><i class="fas fa-tools"></i> האתר בבנייה</h2>
@@ -30,11 +30,225 @@
         </div>
     </div>
 
-    <!-- Glowing Background Ambient Spheres -->
+    <!-- רקע אנימטיבי מבריק -->
     <div class="bg-glow blob-1"></div>
     <div class="bg-glow blob-2"></div>
     <div class="bg-glow blob-3"></div>
 
+    <!-- סרגל ניווט עליון -->
+    <nav class="navbar glass-nav">
+        <div class="container nav-content">
+            <div class="logo">
+                <div class="logo-icon"><i class="fas fa-terminal"></i></div>
+                <span>פיתוחים שלי</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">בית</a></li>
+                <li><a href="#shop">קטלוג מקיף</a></li>
+                <li><a href="#about">עלינו</a></li>
+                <li><a href="#contact">צור קשר</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- אזור ראשי - Hero -->
+    <section id="home" class="hero">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <span class="badge"><i class="fas fa-sparkles"></i> חנות פיתוחים ופתרונות 2026</span>
+                <h1>קוד נקי. עיצוב מתקדם.<br><span class="gradient-text">חוויית משתמש מנצחת.</span></h1>
+                <p>הורדות ישירות, כלים מותאמים אישית ופרויקטים שנבנו ברמה הגבוהה ביותר.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" data-action="scroll-to-shop">
+                        <i class="fas fa-shopping-bag"></i> גלול לקטלוג
+                    </button>
+                    <a href="#about" class="btn btn-secondary">למד עוד</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- אזור הקטלוג / חנות -->
+    <section id="shop" class="shop">
+        <div class="container">
+            <div class="section-header">
+                <h2>קטלוג מוצרים והורדות</h2>
+                <p class="section-subtitle">בחר מבין הפרויקטים והפתרונות השונים שלנו - לא רק M36!</p>
+            </div>
+            
+            <!-- מערכת סינון לפי קטגוריות -->
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">הכל</button>
+                <button class="filter-btn" data-filter="web">פיתוחי רשת (Web)</button>
+                <button class="filter-btn" data-filter="app">אפליקציות</button>
+                <button class="filter-btn" data-filter="tools">כלים ורומים</button>
+            </div>
+
+            <div class="products-grid">
+
+                <!-- מוצר 1: מחיצת לוגו לנגן M36 -->
+                <div class="product-card glass-card" data-category="tools">
+                    <div class="product-badge">מומלץ</div>
+                    <div class="product-image">
+                        <img src="Download/img1.png" alt="דגם כשר כהה" data-fallback="https://via.placeholder.com/80/6366f1/ffffff?text=M36">
+                    </div>
+                    <h3>מחיצת לוגו לנגן M36</h3>
+                    <p>בחר והורד דגמי לוגו מותאמים אישית לנגן שלך בקלות.</p>
+                    <div class="product-meta">
+                        <span class="price">חינם</span>
+                        <span class="rating"><i class="fas fa-star"></i> 5.0</span>
+                    </div>
+                    <button class="btn btn-primary" data-action="open-modal" data-modal="m36-modal" style="width: 100%;">
+                        <i class="fas fa-eye"></i> צפה בדגמים
+                    </button>
+                </div>
+
+                <!-- מוצר 2: מודול לוגו ואנימציה -->
+                <div class="product-card glass-card" data-category="tools">
+                    <div class="product-badge">חדש</div>
+                    <div class="product-image">
+                        <img src="Download/m36-logo-anim-preview.gif" alt="תצוגה מקדימה - שינוי לוגו ואנימציה M36" data-fallback="https://via.placeholder.com/80/6366f1/ffffff?text=M36">
+                    </div>
+                    <h3>שינוי לוגו ואנימציה לנגן M36</h3>
+                    <p>מודול Magisk שצורב לוגו ואנימציית אתחול חדשים לנגן. גיבוי אוטומטי מובנה.</p>
+                    <div class="product-meta">
+                        <span class="price">חינם</span>
+                        <span class="rating"><i class="fas fa-star"></i> גרסה 2.0</span>
+                    </div>
+                    <a href="Download/m36_logo_anim_v2_0.zip" download class="btn btn-primary" style="width: 100%;">
+                        <i class="fas fa-download"></i> הורד מודול (ZIP)
+                    </a>
+                </div>
+
+                <!-- מוצר 3: פיתוחי רשת (מקום להוספת פרויקטים נוספים כפי שביקשת) -->
+                <div class="product-card glass-card coming-soon" data-category="web">
+                    <div class="product-image icon-bg"><i class="fas fa-globe"></i></div>
+                    <h3>פיתוחי Web / Base44</h3>
+                    <p>פרויקטי רשת, סקריפטים ומערכות יעלו כאן בקרוב.</p>
+                </div>
+
+                <!-- מוצר 4: אפליקציות -->
+                <div class="product-card glass-card coming-soon" data-category="app">
+                    <div class="product-image icon-bg"><i class="fas fa-mobile-alt"></i></div>
+                    <h3>אפליקציות וכלים</h3>
+                    <p>אפליקציות אנדרואיד חדשות יעלו כאן בקרוב.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- אזור אודות -->
+    <section id="about" class="about">
+      <div class="container about-grid">
+        <div class="about-text">
+          <h2>עלינו</h2>
+          <p class="section-subtitle">עיצובים וכלים פרקטיים לבניית חוויות משתמש מודרניות.</p>
+        </div>
+        <div class="about-stats">
+          <div class="stat-box glass-card">
+            <h3>1,200+</h3>
+            <p>הורדות</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- אזור יצירת קשר -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <div class="section-header">
+          <h2>יצירת קשר</h2>
+          <p class="section-subtitle">יש לך שאלה או בקשה מיוחדת? נשמח לשמוע ממך</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-info glass-card">
+            <div class="contact-item">
+              <div class="icon-wrap"><i class="fas fa-envelope"></i></div>
+              <div>
+                <h4>דוא״ל</h4>
+                <a href="mailto:ysrlmyrmws1@gmail.com">ysrlmyrmws1@gmail.com</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="icon-wrap"><i class="fas fa-phone"></i></div>
+              <div>
+                <h4>טלפון</h4>
+                <a href="tel:0556747686">0556747686</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- טופס יצירת קשר מחובר ל-Formspree -->
+          <form id="contact-form" action="https://formspree.io/f/xbdnqqla" method="POST" class="contact-form glass-card" novalidate>
+            <div class="form-group">
+              <input type="text" name="name" placeholder="שם מלא" required>
+            </div>
+            <div class="form-group">
+              <input type="email" name="email" placeholder="כתובת דוא״ל" required>
+            </div>
+            <div class="form-group">
+              <textarea name="message" placeholder="איך אפשר לעזור לך?..." rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-paper-plane"></i> שלח הודעה
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- פוטר (תחתית האתר) -->
+    <footer class="footer">
+      <div class="container footer-content">
+        <div class="logo">
+          <div class="logo-icon"><i class="fas fa-terminal"></i></div>
+          <span>פיתוחים שלי</span>
+        </div>
+        <div class="social-links">
+          <a href="https://mitmachim.top/user/%D7%A0%D7%97%D7%9C%D7%A1-%D7%93%D7%95%D7%9F" target="_blank" rel="noopener noreferrer" aria-label="פרופיל במתמחים טופ"><i class="fas fa-user"></i></a>
+          <a href="mailto:ysrlmyrmws1@gmail.com" aria-label="דוא״ל"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- הודעות קופצות (Toasts) -->
+    <div id="notification" class="notification glass-card"></div>
+
+    <!-- מודאל לנגן M36 -->
+    <div id="m36-modal" class="modal" aria-hidden="true">
+      <div class="modal-content glass-card" role="dialog" aria-modal="true" aria-labelledby="m36-title">
+        <button class="close-btn" data-action="close-modal" data-modal="m36-modal" aria-label="סגור">&times;</button>
+        <h3 id="m36-title">מחיצת לוגו לנגן M36</h3>
+        <div class="modal-grid">
+          <div class="preview-container">
+            <img id="modal-preview-img" src="" alt="תצוגת דגם">
+          </div>
+          <div>
+            <p style="margin-top:0">בחר את הדגם המתאים:</p>
+            <div class="model-selection">
+              <select id="model-select">
+                <!-- יתמלא אוטומטית מקובץ ה-JSON באמצעות ה-JS -->
+              </select>
+            </div>
+            <div class="modal-actions" style="margin-top:14px; display:flex; gap:8px;">
+              <button class="btn btn-secondary" data-action="add-like">❤️ <span id="likes-count">32</span></button>
+              <a id="btn-download" href="#" download class="btn btn-download-modal">⬇️ הורד קובץ</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- סקריפט מרוכז וקומפקטי (איחדנו אליו הכל) -->
+    <script src="script.js"></script>
+    
+    <!-- הווידג'ט של ה-AI -->
+    <iframe src="ai-widget.html" style="position:fixed; bottom:0; right:0; border:none; width:420px; height:700px; z-index:99999; pointer-events:none;" allowtransparency="true"></iframe>
+    
+</body>
+    </html>
     <!-- Navigation Bar -->
     <nav class="navbar glass-nav">
         <div class="container nav-content">
