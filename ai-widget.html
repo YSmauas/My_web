@@ -147,14 +147,24 @@
         }
 
         // ניהול פתיחת/סגירת הווידג'ט
+        function notifyParentSize(isOpen) {
+            // מודיע לעמוד הראשי (index.html) לשנות את גודל ה-iframe עצמו,
+            // כך שכשסגור הוא קטן (לא חוסם קליקים בשאר העמוד),
+            // וכשפתוח הוא גדול מספיק כדי שהפאנל לא ייחתך.
+            window.parent.postMessage({ type: 'ai-widget-resize', open: isOpen }, '*');
+        }
+
         if (widgetToggle) {
             widgetToggle.onclick = () => {
                 appContainer.classList.toggle('open');
-                widgetToggle.innerHTML = appContainer.classList.contains('open') ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-comment-dots"></i>';
+                const isOpen = appContainer.classList.contains('open');
+                widgetToggle.innerHTML = isOpen ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-comment-dots"></i>';
+                notifyParentSize(isOpen);
             };
             if(closeWidget) closeWidget.onclick = () => { 
                 appContainer.classList.remove('open'); 
                 widgetToggle.innerHTML = '<i class="fa-solid fa-comment-dots"></i>'; 
+                notifyParentSize(false);
             };
         }
 

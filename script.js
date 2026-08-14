@@ -264,3 +264,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+// --- AI widget iframe resize (postMessage from ai-widget.html) ---
+// כשהצ'אט בתוך ה-iframe נפתח/נסגר, ai-widget.html שולח הודעה לכאן,
+// ואנחנו מגדילים/מקטינים את ה-iframe עצמו כדי שהפאנל לא ייחתך
+// וכדי שלא יחסום קליקים בשאר העמוד כשהוא סגור.
+window.addEventListener('message', (event) => {
+    if (!event.data || event.data.type !== 'ai-widget-resize') return;
+    const frame = document.getElementById('ai-widget-frame');
+    if (!frame) return;
+    frame.classList.toggle('widget-open', !!event.data.open);
+});
