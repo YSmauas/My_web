@@ -9,7 +9,7 @@
 
 :root {
     --bg-dark: #080d1a;
-    --bg-card: rgba(15, 23, 42, 0.65);
+    --bg-card: rgba(15, 23, 42, 0.75);
     --border-glass: rgba(255, 255, 255, 0.08);
     --border-hover: rgba(99, 102, 241, 0.5);
     
@@ -80,7 +80,7 @@ body {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: rgba(8, 13, 26, 0.75);
+    background: rgba(8, 13, 26, 0.85);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border-glass);
     padding: 1rem 0;
@@ -130,7 +130,7 @@ body {
 /* ==========================================================================
    איזור פתיחה - Hero Section
    ========================================================================== */
-.hero { padding: 120px 0 80px; text-align: center; }
+.hero { padding: 100px 0 60px; text-align: center; }
 .hero-content { max-width: 800px; margin: 0 auto; }
 
 .badge {
@@ -146,31 +146,31 @@ body {
     margin-bottom: 24px;
 }
 
-.hero h1 { font-size: 3.2rem; font-weight: 800; line-height: 1.2; margin-bottom: 20px; }
+.hero h1 { font-size: 3rem; font-weight: 800; line-height: 1.2; margin-bottom: 20px; }
 .gradient-text {
     background: linear-gradient(135deg, #a5b4fc 0%, #38bdf8 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.hero p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 36px; }
+.hero p { font-size: 1.15rem; color: var(--text-muted); margin-bottom: 32px; }
 .hero-buttons { display: flex; justify-content: center; gap: 16px; }
 
 /* ==========================================================================
    כפתורים - Buttons
    ========================================================================== */
 .btn {
-    padding: 12px 28px;
+    padding: 12px 24px;
     border-radius: var(--radius-md);
     font-family: inherit;
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
     transition: var(--transition);
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 8px;
     border: none;
     text-decoration: none;
 }
@@ -197,15 +197,14 @@ body {
 /* ==========================================================================
    חנות וכרטיסיות מוצר - Shop Section & Cards
    ========================================================================== */
-.shop { padding: 80px 0; }
-.section-header { text-align: center; margin-bottom: 40px; }
+.shop { padding: 60px 0; }
+.section-header { text-align: center; margin-bottom: 36px; }
 .section-header h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 8px; }
 .section-subtitle { color: var(--text-muted); }
 
-/* סינונים */
-.filters { display: flex; justify-content: center; gap: 12px; margin-bottom: 40px; flex-wrap: wrap; }
+.filters { display: flex; justify-content: center; gap: 10px; margin-bottom: 32px; flex-wrap: wrap; }
 .filter-btn {
-    padding: 8px 20px;
+    padding: 8px 18px;
     border-radius: 30px;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--border-glass);
@@ -225,12 +224,12 @@ body {
 
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
 }
 
 .product-card {
-    padding: 28px;
+    padding: 24px;
     position: relative;
     transition: var(--transition);
     display: flex;
@@ -238,26 +237,26 @@ body {
 }
 
 .product-card:hover {
-    transform: translateY(-6px);
+    transform: translateY(-5px);
     border-color: var(--border-hover);
     box-shadow: 0 12px 30px rgba(99, 102, 241, 0.15);
 }
 
 .product-badge {
     position: absolute;
-    top: 16px; left: 16px;
+    top: 14px; left: 14px;
     background: linear-gradient(135deg, #f59e0b, #ef4444);
     color: #fff;
     font-size: 0.75rem;
     font-weight: 700;
-    padding: 4px 10px;
+    padding: 3px 8px;
     border-radius: 20px;
 }
 
 .product-image {
-    width: 70px; height: 70px;
+    width: 60px; height: 60px;
     border-radius: var(--radius-md);
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     overflow: hidden;
     display: flex; align-items: center; justify-content: center;
 }
@@ -266,59 +265,58 @@ body {
 .product-image.icon-bg {
     background: rgba(99, 102, 241, 0.15);
     color: #a5b4fc;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     border: 1px solid rgba(99, 102, 241, 0.2);
 }
 
-.product-card h3 { font-size: 1.25rem; margin-bottom: 8px; }
-.product-card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px; flex-grow: 1; }
+.product-card h3 { font-size: 1.2rem; margin-bottom: 8px; }
+.product-card p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px; flex-grow: 1; }
 
 .product-meta {
     display: flex; justify-content: space-between; align-items: center;
-    padding-top: 16px; margin-bottom: 20px; border-top: 1px solid var(--border-glass);
+    padding-top: 12px; margin-bottom: 16px; border-top: 1px solid var(--border-glass);
 }
 
-.price { font-size: 1.3rem; font-weight: 700; color: #38bdf8; }
-.rating { color: #fbbf24; font-size: 0.9rem; }
+.price { font-size: 1.2rem; font-weight: 700; color: #38bdf8; }
+.rating { color: #fbbf24; font-size: 0.85rem; }
 .product-card.hidden { display: none; }
 
-/* מצב של פריטים שעדיין לא הועלו (בקרוב) */
 .product-card.coming-soon {
     align-items: center; justify-content: center; text-align: center;
     border-style: dashed; opacity: 0.75;
 }
-.product-card.coming-soon .product-image.icon-bg { margin: 0 auto 20px; }
+.product-card.coming-soon .product-image.icon-bg { margin: 0 auto 16px; }
 .product-card.coming-soon p { margin-bottom: 0; flex-grow: 0; }
 
 /* ==========================================================================
    אזור אודות ויצירת קשר - About & Contact
    ========================================================================== */
-.about { padding: 80px 0; }
-.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-.about-text h2 { font-size: 2.2rem; margin-bottom: 16px; }
-.about-text p { color: var(--text-muted); margin-bottom: 24px; }
-.stat-box { padding: 24px; text-align: center; }
-.stat-box h3 { font-size: 2.2rem; color: #a5b4fc; margin-bottom: 4px; }
+.about { padding: 60px 0; }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
+.about-text h2 { font-size: 2rem; margin-bottom: 12px; }
+.about-text p { color: var(--text-muted); margin-bottom: 20px; }
+.stat-box { padding: 20px; text-align: center; }
+.stat-box h3 { font-size: 2rem; color: #a5b4fc; margin-bottom: 4px; }
 
-.contact { padding: 80px 0; }
-.contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 32px; }
-.contact-info { padding: 32px; display: flex; flex-direction: column; gap: 24px; }
-.contact-item { display: flex; align-items: center; gap: 16px; }
+.contact { padding: 60px 0; }
+.contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 24px; }
+.contact-info { padding: 24px; display: flex; flex-direction: column; gap: 20px; }
+.contact-item { display: flex; align-items: center; gap: 14px; }
 .icon-wrap {
-    width: 48px; height: 48px;
+    width: 42px; height: 42px;
     background: rgba(99, 102, 241, 0.15); border-radius: var(--radius-md);
     display: flex; align-items: center; justify-content: center;
-    color: #a5b4fc; font-size: 1.2rem;
+    color: #a5b4fc; font-size: 1.1rem;
 }
-.contact-item h4 { font-size: 0.9rem; color: var(--text-muted); }
+.contact-item h4 { font-size: 0.85rem; color: var(--text-muted); }
 .contact-item a, .contact-item p { color: var(--text-main); text-decoration: none; font-weight: 500; }
 
-.contact-form { padding: 32px; display: flex; flex-direction: column; gap: 16px; }
+.contact-form { padding: 24px; display: flex; flex-direction: column; gap: 14px; }
 .form-group input, .form-group textarea {
-    width: 100%; padding: 14px 18px;
+    width: 100%; padding: 12px 16px;
     background: rgba(0, 0, 0, 0.2);
     border: 1px solid var(--border-glass); border-radius: var(--radius-md);
-    color: var(--text-main); font-family: inherit; font-size: 0.95rem;
+    color: var(--text-main); font-family: inherit; font-size: 0.9rem;
     transition: var(--transition);
 }
 
@@ -330,79 +328,80 @@ body {
 /* ==========================================================================
    פוטר והתראות קופצות - Footer & Notifications
    ========================================================================== */
-.footer { padding: 40px 0; border-top: 1px solid var(--border-glass); margin-top: 60px; }
+.footer { padding: 30px 0; border-top: 1px solid var(--border-glass); margin-top: 40px; }
 .footer-content { display: flex; justify-content: space-between; align-items: center; }
-.social-links { display: flex; align-items: center; gap: 16px; }
-.social-links a { color: var(--text-muted); font-size: 1.3rem; transition: var(--transition); }
+.social-links { display: flex; align-items: center; gap: 14px; }
+.social-links a { color: var(--text-muted); font-size: 1.2rem; transition: var(--transition); }
 .social-links a:hover { color: var(--text-main); }
 
 .notification {
-    position: fixed; bottom: 24px; left: 24px;
-    padding: 16px 24px;
+    position: fixed; bottom: 20px; left: 20px;
+    padding: 14px 20px;
     background: rgba(16, 185, 129, 0.9); color: #fff;
     font-weight: 500; display: none; z-index: 2000;
+    border-radius: var(--radius-md);
     animation: fadeIn 0.3s ease;
 }
 .notification.show { display: block; }
 
 /* ==========================================================================
-   חלון מודאל (קופץ) - Modals
+   חלון מודאל מוקטן ומעוצב לבחירת דגם - Modal Small & Compact
    ========================================================================== */
 .modal {
     display: none; position: fixed; inset: 0;
-    background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(8px);
-    z-index: 10000; align-items: center; justify-content: center; padding: 20px;
+    background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(8px);
+    z-index: 10000; align-items: center; justify-content: center; padding: 16px;
 }
 .modal.show { display: flex; }
-.modal-content {
-    width: 100%; max-width: 940px;
-    padding: 20px; border-radius: 14px; position: relative;
-}
-.modal-grid { display: grid; grid-template-columns: 1fr; gap: 18px; align-items: start; }
 
-@media (min-width: 860px) {
-    .modal-grid { grid-template-columns: 1fr 420px; }
-    .preview-container { max-width: 520px; margin: 0 auto; }
+/* הקטנת גודל החלון הקופץ בקוד המעודכן */
+.modal-content {
+    width: 100%; max-width: 480px;
+    padding: 24px; border-radius: 16px; position: relative;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
 }
+
+.modal-grid { display: flex; flex-direction: column; gap: 16px; }
 
 .close-btn {
-    position: absolute; top: 16px; left: 20px;
-    font-size: 24px; color: var(--text-muted); cursor: pointer;
+    position: absolute; top: 12px; left: 16px;
+    font-size: 22px; color: var(--text-muted); cursor: pointer;
+    background: none; border: none; line-height: 1;
 }
 .close-btn:hover { color: var(--text-main); }
 
 .preview-container {
     width: 100%; border-radius: var(--radius-md); overflow: hidden;
-    margin: 16px 0; border: 1px solid var(--border-glass);
+    border: 1px solid var(--border-glass);
     display: flex; align-items: center; justify-content: center;
-    min-height: 320px; background: rgba(0, 0, 0, 0.45); padding: 12px;
+    min-height: 180px; max-height: 220px; background: rgba(0, 0, 0, 0.45); padding: 10px;
 }
 .preview-container img {
-    width: 100%; height: auto; max-height: 560px;
-    object-fit: contain; display: block; border-radius: 8px;
+    max-width: 100%; max-height: 180px;
+    object-fit: contain; display: block; border-radius: 6px;
 }
 
 .model-selection select {
-    width: 100%; padding: 12px;
-    background: rgba(0,0,0,0.4); border: 1px solid var(--border-glass);
+    width: 100%; padding: 10px 14px;
+    background: rgba(0, 0, 0, 0.5); border: 1px solid var(--border-glass);
     color: var(--text-main); border-radius: var(--radius-md);
-    font-family: inherit; margin-bottom: 20px;
+    font-family: inherit; margin-top: 6px; font-size: 0.95rem;
 }
 
 .btn-download-modal {
     flex: 1; background: var(--primary); color: #fff;
-    text-align: center; text-decoration: none; padding: 12px;
-    border-radius: var(--radius-md); font-weight: 600;
+    text-align: center; text-decoration: none; padding: 10px 16px;
+    border-radius: var(--radius-md); font-weight: 600; font-size: 0.95rem;
 }
 
 /* ==========================================================================
    התאמה למובייל - Responsive Design
    ========================================================================== */
 @media (max-width: 768px) {
-    .hero h1 { font-size: 2.2rem; }
+    .hero h1 { font-size: 2.1rem; }
     .about-grid, .contact-grid { grid-template-columns: 1fr; }
-    .footer-content { flex-direction: column; gap: 16px; }
-    .nav-links { gap: 1rem; font-size: 0.9rem; }
+    .footer-content { flex-direction: column; gap: 14px; }
+    .nav-links { gap: 1rem; font-size: 0.85rem; }
 }
 
 @keyframes fadeIn {
@@ -410,11 +409,10 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* אנימציות עדינות מודרניות */
 @keyframes modalPop {
-  from { transform: translateY(18px) scale(.98); opacity: 0; }
-  to   { transform: translateY(0) scale(1); opacity: 1; }
+    from { transform: translateY(12px) scale(.96); opacity: 0; }
+    to   { transform: translateY(0) scale(1); opacity: 1; }
 }
 .modal.show .modal-content {
-  animation: modalPop .32s cubic-bezier(.2,.9,.3,1);
+    animation: modalPop .28s cubic-bezier(.2,.9,.3,1);
 }
