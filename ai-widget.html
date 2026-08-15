@@ -121,36 +121,24 @@
         const themeToggle = document.getElementById('themeToggle');
         const clearChatBtn = document.getElementById('clearChatBtn');
 
-        // פונקציית פירסור עיצוב טקסט (Markdown: כותרות, דגשים, קוד ושורות חדשות)
         function parseMarkdown(text) {
             if (!text) return '';
             let html = text;
             
-            // המרת תגיות אבטחה בסיסיות
             html = html.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
             
-            // כותרות
             html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
             html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
             html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
             
-            // דגשים (**מודגש**)
             html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-            
-            // קוד קצר (`code`)
             html = html.replace(/`(.*?)`/g, '<code>$1</code>');
-            
-            // ירידות שורה
             html = html.replace(/\n/g, '<br>');
             
             return html;
         }
 
-        // ניהול פתיחת/סגירת הווידג'ט
         function notifyParentSize(isOpen) {
-            // מודיע לעמוד הראשי (index.html) לשנות את גודל ה-iframe עצמו,
-            // כך שכשסגור הוא קטן (לא חוסם קליקים בשאר העמוד),
-            // וכשפתוח הוא גדול מספיק כדי שהפאנל לא ייחתך.
             window.parent.postMessage({ type: 'ai-widget-resize', open: isOpen }, '*');
         }
 
@@ -168,7 +156,6 @@
             };
         }
 
-        // מצב יום/לילה
         let isLight = false;
         if (themeToggle) {
             themeToggle.onclick = () => {
@@ -178,7 +165,6 @@
             };
         }
 
-        // הוספת הודעה לחלון הצ'אט
         function append(rawTxt, type) {
             const wrapper = document.createElement('div');
             wrapper.className = 'msg-wrapper ' + type + '-wrapper';
@@ -186,7 +172,6 @@
             const div = document.createElement('div'); 
             div.className = 'msg ' + type; 
             
-            // אם זה הבוט, אנחנו מפעילים את הפירסור של העיצוב
             if (type === 'bot') {
                 div.innerHTML = parseMarkdown(rawTxt);
             } else {
@@ -264,7 +249,6 @@
             }
         }
 
-        // שליחת הודעה בצורה מאובטחת דרך Vercel Serverless Function
         async function sendMsg() {
             if (currentAbortController) {
                 currentAbortController.abort();
@@ -287,19 +271,24 @@
             setSendingState(true);
 
             try {
-                // פנייה לקובץ השרת שבנינו ב-Vercel
-                const res = await fetch('/api/get-data', {
+                // פנייה ישירה לכתובת ה-API הציבורית ב-Vercel
+                const res = await fetch('https://mydevelopments.vercel.app/api/get-data', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ contents: chatHistory }),
                     signal: currentAbortController.signal
                 });
 
+                // בדיקת תקינות התגובה לפני פענוח ל-JSON
+                if (!res.ok) {
+                    throw new Error(`שגיאת שרת (${res.status}) - נתיב ה-API לא נמצא או שאינו מוגדר כראוי ב-Vercel`);
+                }
+
                 const data = await res.json();
                 loadWrapper.remove();
                 setSendingState(false);
 
-                if(!res.ok || data.error) throw new Error(data.error || "שגיאה בתגובת השרת");
+                if(data.error) throw new Error(data.error);
 
                 const replyText = data.candidates?.[0]?.content?.parts?.[0]?.text || "לא התקבלה תשובה תקנית מהשרת.";
                 

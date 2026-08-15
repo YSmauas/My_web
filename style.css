@@ -454,7 +454,7 @@ body {
    מתוך ai-widget.html - ראה index.html). */
 #ai-widget-frame {
     position: fixed;
-    bottom: 20px;
+    bottom: max(28px, env(safe-area-inset-bottom, 0px) + 20px);
     right: 20px;
     width: 84px;
     height: 84px;
